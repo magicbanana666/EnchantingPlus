@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "g": "#c:dusts/glowstone",
+    "b": "minecraft:enchanted_book"
+  },
+  "pattern": [
+    " g ",
+    "gbg",
+    " g "
+  ],
+  "result": {
+    "id": "eplus:decorative_book_eplus"
+  }
+}

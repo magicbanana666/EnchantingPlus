@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "g": "#c:gems/prismarine",
+    "b": "minecraft:enchanted_book"
+  },
+  "pattern": [
+    " g ",
+    "gbg",
+    " g "
+  ],
+  "result": {
+    "id": "eplus:decorative_book_prismarine"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/eplus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/prismarine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/nether"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/tartarite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/white"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "eplus:entity/book/metal"
+    }
+  ]
+}

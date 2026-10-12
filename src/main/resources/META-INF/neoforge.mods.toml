@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="Don't Be an Asshole License (textures and translations: LGPL-2.1, see the licenses folder in the source)"
+
+[[mods]]
+modId="${mod_id}"
+displayName="${mod_display_name}"
+version="${mod_version}"
+authors="magicbanana666"
+credits="Based on Enchanting Plus by Darkhax and contributors (textures and translations)"
+description='''Gives players control over enchanting: pick exactly which enchantments (and levels) go on an item in the Advanced Enchantment Table, paying with experience.'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neoforge_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="[${minecraft_version}]"
+    ordering="NONE"
+    side="BOTH"

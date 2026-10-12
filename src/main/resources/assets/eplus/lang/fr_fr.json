@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "Table d'enchantement améliorée",
-  "block.eplus.decorative_book_eplus": "Livre Enchanting Plus",
-  "block.eplus.decorative_book_vanilla": "Livre d'enchantement",
-  "block.eplus.decorative_book_prismarine": "Livre prismarine",
-  "block.eplus.decorative_book_nether": "Livre du Nether",
-  "block.eplus.decorative_book_tartarite": "Livre de Tartarite",
-  "block.eplus.decorative_book_white": "Livre pâle",
-  "block.eplus.decorative_book_metal": "Livre métallique",
-  "item.eplus.table_upgrade": "Amélioration de table",
   "itemGroup.eplus": "Enchanting Plus",
   "eplus.info.playerxp": "EXP : %s",
   "eplus.info.costxp": "Coût : %s",

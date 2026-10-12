@@ -26,6 +26,5 @@ public final class EPlusClient {
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(EPlusRegistry.ADVANCED_TABLE_BE.get(), BookRenderer::new);
-        event.registerBlockEntityRenderer(EPlusRegistry.DECORATIVE_BOOK_BE.get(), BookRenderer::new);
     }
 }

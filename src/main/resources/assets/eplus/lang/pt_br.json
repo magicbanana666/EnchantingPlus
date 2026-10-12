@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "Mesa de Encantamentos Avançada",
-  "block.eplus.decorative_book_eplus": "Livro do Enchanting Plus",
-  "block.eplus.decorative_book_vanilla": "Livro de Encantamentos",
-  "block.eplus.decorative_book_prismarine": "Livro de Prismarinho",
-  "block.eplus.decorative_book_nether": "Livro do Nether",
-  "block.eplus.decorative_book_tartarite": "Livro de Tartarite",
-  "block.eplus.decorative_book_white": "Livro Pálido",
-  "block.eplus.decorative_book_metal": "Livro de Metal",
-  "item.eplus.table_upgrade": "Melhoria da Mesa",
   "itemGroup.eplus": "Enchanting Plus",
   "eplus.info.playerxp": "EXP: %s",
   "eplus.info.costxp": "Custo: %s",

@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "Расширенный стол зачарований",
-  "block.eplus.decorative_book_eplus": "Книга Enchanting Plus",
-  "block.eplus.decorative_book_vanilla": "Зачарованная книга",
-  "block.eplus.decorative_book_prismarine": "Призмариновая книга",
-  "block.eplus.decorative_book_nether": "Книга нижнего мира",
-  "block.eplus.decorative_book_tartarite": "Тартарская книга",
-  "block.eplus.decorative_book_white": "Бледная книга",
-  "block.eplus.decorative_book_metal": "Металлическая книга",
-  "item.eplus.table_upgrade": "Стол обновления",
   "itemGroup.eplus": "Enchanting Plus",
   "eplus.info.playerxp": "Опыт: %s",
   "eplus.info.costxp": "Стоимость: %s",

@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "高级附魔台",
-  "block.eplus.decorative_book_eplus": "高级附魔用书",
-  "block.eplus.decorative_book_vanilla": "附魔用书",
-  "block.eplus.decorative_book_prismarine": "海晶石之书",
-  "block.eplus.decorative_book_nether": "下界之书",
-  "block.eplus.decorative_book_tartarite": "火石之书",
-  "block.eplus.decorative_book_white": "苍白之书",
-  "block.eplus.decorative_book_metal": "金属之书",
-  "item.eplus.table_upgrade": "附魔台升级",
   "itemGroup.eplus": "更好的附魔",
   "eplus.info.playerxp": "经验：%s",
   "eplus.info.costxp": "需要：%s",

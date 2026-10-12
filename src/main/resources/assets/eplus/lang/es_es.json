@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "Mesa de encantamientos avanzada",
-  "block.eplus.decorative_book_eplus": "Libro de encantamientos avanzado",
-  "block.eplus.decorative_book_vanilla": "Libro de encantamientos",
-  "block.eplus.decorative_book_prismarine": "Libro de Prismarina",
-  "block.eplus.decorative_book_nether": "Libro del Nether",
-  "block.eplus.decorative_book_tartarite": "Libro del Tártaro",
-  "block.eplus.decorative_book_white": "Libro Deslucido",
-  "block.eplus.decorative_book_metal": "Libro Metálico",
-  "item.eplus.table_upgrade": "Actualización de la mesa",
   "item.eplus.enchanted.scroll.name": "Pergamino encantado",
   "commands.eplus.usage": "El comando básico para todos los comandos añadidos por Enchanting Plus..",
   "tooltip.eplus.enchantment": "Encantamiento",

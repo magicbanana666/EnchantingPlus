@@ -1,13 +1,5 @@
 {
   "block.eplus.advanced_table": "Gelişmiş Büyü Masası",
-  "block.eplus.decorative_book_eplus": "Enchanting Plus Kitabı",
-  "block.eplus.decorative_book_vanilla": "Büyü Kitabı",
-  "block.eplus.decorative_book_prismarine": "Prizmarin Kitabı",
-  "block.eplus.decorative_book_nether": "Nether Kitabı",
-  "block.eplus.decorative_book_tartarite": "Tartarite Kitabı",
-  "block.eplus.decorative_book_white": "Soluk Kitap",
-  "block.eplus.decorative_book_metal": "Metal Kitap",
-  "item.eplus.table_upgrade": "Masa Yükseltmesi",
   "itemGroup.eplus": "Enchanting Plus",
   "eplus.info.playerxp": "EXP: %s",
   "eplus.info.costxp": "Ücret: %s",

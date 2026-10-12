@@ -14,16 +14,13 @@ Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies.
 
 ## Getting the Advanced Enchantment Table
 
-The table is meant to be an end-game block. First craft a **Table Upgrade**:
+The table is meant to be an end-game block, so the recipe is expensive:
 
 ```
- Lapis Block     Nether Star    Lapis Block
- Netherite Ingot Book and Quill Netherite Ingot
- Obsidian        Obsidian       Obsidian
+ Lapis Block     Dragon Egg        Lapis Block
+ Nether Star     Enchanting Table  Nether Star
+ Netherite Block Netherite Block   Netherite Block
 ```
-
-Then right click an existing enchanting table with it to turn it into an advanced table in place, or craft
-the upgrade together with an enchanting table (shapeless) to get the table as an item.
 
 ## Using the table
 
@@ -73,25 +70,6 @@ Every player has their own item slot in the table, so you can leave an item in i
 players won't see it. Breaking the table drops the items of all players. The armor slots on the left side of
 the table are your normal armor slots.
 
-## Decorative books
-
-Floating books that look nice next to your table. They count as a bookshelf for enchanting tables, glow a
-little, and give a comparator signal while they are open (a player is close). Right click one with a
-**feather** to move it up and with an **iron ingot** to move it down.
-
-Recipe: an enchanted book surrounded (top, left, right, bottom) by:
-
-| Book | Material |
-| --- | --- |
-| Enchanting Plus Book | Glowstone dust |
-| Enchanting Book | Book |
-| Prismarine Book | Prismarine crystals |
-| Nether Book | Nether brick |
-| Pale Book | Paper |
-| Metal Book | Iron ingot |
-
-(The Tartarite Book is creative only.)
-
 ## Configuration
 
 The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in game through the mod list):
@@ -102,7 +80,6 @@ The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in g
 | `costFactor` | 1.0 | Multiplier for all costs (0.5 = half price) |
 | `treasureFactor` | 4.0 | Extra multiplier for treasure enchantments |
 | `curseFactor` | 3.0 | Extra multiplier for curses |
-| `floatingBookPower` | 1.0 | Enchanting power of a decorative book (a bookshelf has 1) |
 | `allowOtherEnchantments` | true | Show the "Other enchantments" category |
 | `blacklistedItems` | [] | Items that can't be enchanted, EG `"minecraft:elytra"` |
 | `blacklistedEnchantments` | [] | Enchantments that are never offered, EG `"minecraft:mending"` |

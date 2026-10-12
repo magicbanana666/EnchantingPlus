@@ -138,7 +138,7 @@ public final class EnchLogic {
         return isNightRange && level.environmentAttributes().getValue(EnvironmentAttributes.MOON_PHASE, pos) == MoonPhase.FULL_MOON;
     }
 
-    /** Sum of the enchanting power of the bookshelves (and floating books) around the table. */
+    /** Sum of the enchanting power of the bookshelves around the table. */
     public static float getEnchantingPower(Level level, BlockPos pos) {
         float power = 0;
         for (final BlockPos offset : EnchantingTableBlock.BOOKSHELF_OFFSETS) {

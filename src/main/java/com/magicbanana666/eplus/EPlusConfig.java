@@ -12,7 +12,6 @@ public final class EPlusConfig {
     public static final ModConfigSpec.DoubleValue COST_FACTOR;
     public static final ModConfigSpec.DoubleValue TREASURE_FACTOR;
     public static final ModConfigSpec.DoubleValue CURSE_FACTOR;
-    public static final ModConfigSpec.DoubleValue FLOATING_BOOK_POWER;
     public static final ModConfigSpec.BooleanValue ALLOW_OTHER_ENCHANTMENTS;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> BLACKLISTED_ITEMS;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> BLACKLISTED_ENCHANTMENTS;
@@ -24,7 +23,6 @@ public final class EPlusConfig {
         COST_FACTOR = builder.comment("A number used when calculating enchantment cost. This number is treated as a % based factor. 0.30 = 30% of the original cost. 1.5 = 150% of the original cost.").defineInRange("costFactor", 1D, 0D, 1024D);
         TREASURE_FACTOR = builder.comment("A factor used to make treasure enchantments like mending cost more to apply. By default they cost 4X more.").defineInRange("treasureFactor", 4D, 0D, 1024D);
         CURSE_FACTOR = builder.comment("A factor used to make curse enchantments like vanishing cost more to apply (and to remove). By default they cost 3X more.").defineInRange("curseFactor", 3D, 0D, 1024D);
-        FLOATING_BOOK_POWER = builder.comment("The amount of enchantment power a floating (decorative) book gives. Bookshelves have 1 power.").defineInRange("floatingBookPower", 1D, 0D, 1024D);
         ALLOW_OTHER_ENCHANTMENTS = builder.comment("Also offer enchantments that are not meant for the item (EG Protection on a sword), listed under 'Other enchantments'.").define("allowOtherEnchantments", true);
         builder.pop();
         builder.push("blacklist");
@@ -51,10 +49,6 @@ public final class EPlusConfig {
 
     public static float curseFactor() {
         return SPEC.isLoaded() ? CURSE_FACTOR.get().floatValue() : 3f;
-    }
-
-    public static float floatingBookPower() {
-        return SPEC.isLoaded() ? FLOATING_BOOK_POWER.get().floatValue() : 1f;
     }
 
     public static boolean allowOtherEnchantments() {

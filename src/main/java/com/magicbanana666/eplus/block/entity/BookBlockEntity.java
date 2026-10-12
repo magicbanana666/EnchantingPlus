@@ -80,9 +80,5 @@ public abstract class BookBlockEntity extends BlockEntity {
         diff = Mth.clamp(diff, -0.2F, 0.2F);
         entity.flipA = entity.flipA + (diff - entity.flipA) * 0.9F;
         entity.flip = entity.flip + entity.flipA;
-        // Decorative books give a comparator signal while they are open.
-        if (entity.oOpen != entity.open && (entity.open == 0f || entity.open == 1f) && !level.isClientSide()) {
-            level.updateNeighbourForOutputSignal(pos, state.getBlock());
-        }
     }
 }

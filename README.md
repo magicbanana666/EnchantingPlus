@@ -14,17 +14,16 @@ Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies.
 
 ## Getting the Advanced Enchantment Table
 
-The table is meant to be an end-game block, so the recipe is expensive:
+The table is meant to be an end-game block. First craft a **Table Upgrade**:
 
 ```
- Lapis Block   Dragon Egg        Lapis Block
- Nether Star   Enchanting Table  Nether Star
- Netherite Blk Netherite Block   Netherite Block
+ Lapis Block     Nether Star    Lapis Block
+ Netherite Ingot Book and Quill Netherite Ingot
+ Obsidian        Obsidian       Obsidian
 ```
 
-There is also a **Table Upgrade** item (same recipe, but with the middle slot empty). Right click an
-existing enchanting table with it to turn it into an advanced table in place, or craft the upgrade together
-with an enchanting table.
+Then right click an existing enchanting table with it to turn it into an advanced table in place, or craft
+the upgrade together with an enchanting table (shapeless) to get the table as an item.
 
 ## Using the table
 

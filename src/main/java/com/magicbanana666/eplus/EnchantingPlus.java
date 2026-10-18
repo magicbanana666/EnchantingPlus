@@ -24,7 +24,7 @@ public final class EnchantingPlus {
     public EnchantingPlus(IEventBus modBus, ModContainer container) {
         EPlusRegistry.register(modBus);
         modBus.addListener(EnchantingPlus::registerPayloads);
-        container.registerConfig(ModConfig.Type.SERVER, EPlusConfig.SPEC);
+        container.registerConfig(ModConfig.Type.SYNCED, EPlusConfig.SPEC);
     }
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {

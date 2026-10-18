@@ -1,6 +1,5 @@
 package com.magicbanana666.eplus.block;
 
-import com.mojang.serialization.MapCodec;
 import com.magicbanana666.eplus.EPlusRegistry;
 import com.magicbanana666.eplus.EnchLogic;
 import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
@@ -32,7 +31,6 @@ import org.jspecify.annotations.Nullable;
 
 public class AdvancedTableBlock extends BaseEntityBlock {
 
-    public static final MapCodec<AdvancedTableBlock> CODEC = simpleCodec(AdvancedTableBlock::new);
     private static final VoxelShape SHAPE = Block.column(16.0, 0.0, 12.0);
     private static final Component TITLE = Component.translatable("block.eplus.advanced_table");
     private static final ParticleOptions TREASURE_DUST_A = new DustParticleOptions(0xFFD54F, 1.0F);
@@ -40,11 +38,6 @@ public class AdvancedTableBlock extends BaseEntityBlock {
 
     public AdvancedTableBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

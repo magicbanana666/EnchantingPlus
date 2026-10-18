@@ -158,7 +158,7 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     }
 
     private boolean isSneakDown() {
-        return InputConstants.isKeyDown(this.minecraft.getWindow(), this.minecraft.options.keyShift.getKey().getValue());
+        return InputConstants.isKeyDown(this.minecraft.options.keyShift.getKey().getValue());
     }
 
     /** The box to the left of the table with the experience, cost and a tip. */

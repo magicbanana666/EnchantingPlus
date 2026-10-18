@@ -61,12 +61,16 @@ public class BookRenderer<T extends BookBlockEntity> implements BlockEntityRende
         poseStack.pushPose();
         poseStack.translate(0.5F, 0.75F, 0.5F);
         poseStack.translate(0.0F, 0.1F + Mth.sin(state.time * 0.1F) * 0.01F, 0.0F);
-        poseStack.mulPose(Axis.YP.rotation(-state.yRot));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(80.0F));
+        poseStack.rotate(Axis.YP, -state.yRot);
+        poseStack.rotateDegrees(Axis.ZP, 80.0F);
         final float ff1 = Mth.frac(state.flip + 0.25F) * 1.6F - 0.3F;
         final float ff2 = Mth.frac(state.flip + 0.75F) * 1.6F - 0.3F;
         final BookModel.State bookState = BookModel.State.forAnimation(state.time, Mth.clamp(ff1, 0.0F, 1.0F), Mth.clamp(ff2, 0.0F, 1.0F), state.open);
-        submitNodeCollector.submitModel(this.bookModel, bookState, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, TABLE_BOOK, this.sprites, 0, state.breakProgress);
+        submitNodeCollector.submitModel(this.bookModel, bookState, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, TABLE_BOOK, this.sprites, 0);
+        if (state.breakProgress != null) {
+            submitNodeCollector.order(1).submitCrumblingOverlay(this.bookModel, bookState, poseStack, TABLE_BOOK.renderType(this.bookModel.renderType()),
+                    state.lightCoords, OverlayTexture.NO_OVERLAY, -1, state.breakProgress);
+        }
         poseStack.popPose();
     }
 

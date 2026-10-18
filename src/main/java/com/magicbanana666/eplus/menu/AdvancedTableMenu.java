@@ -19,6 +19,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public class AdvancedTableMenu extends AbstractContainerMenu {
@@ -142,7 +143,7 @@ public class AdvancedTableMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         if (player.level().getBlockEntity(this.logic.getPos()) instanceof AdvancedTableBlockEntity || player.level().isClientSide()) {
-            return player.isAlive() && player.distanceToSqr(this.logic.getPos().getCenter()) <= 64.0D;
+            return player.isAlive() && player.distanceToSqr(Vec3.atCenterOf(this.logic.getPos())) <= 64.0D;
         }
         return false;
     }

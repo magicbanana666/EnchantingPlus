@@ -7,8 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Holder;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -123,7 +123,7 @@ public class EnchantmentLabel {
     public Component getDescription() {
         final Identifier id = this.enchantment.unwrapKey().map(key -> key.identifier()).orElse(Identifier.withDefaultNamespace("unknown"));
         final String key = "enchantment." + id.getNamespace() + "." + id.getPath() + ".desc";
-        if (I18n.exists(key)) {
+        if (Language.getInstance().has(key)) {
             return Component.translatable(key);
         }
         final String modName = ModList.get().getModContainerById(id.getNamespace()).map(c -> c.getModInfo().getDisplayName()).orElse(id.getNamespace());

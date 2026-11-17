@@ -72,6 +72,8 @@
   "commands.eplus.flimflam.unknown": "Unknown prank",
   "commands.eplus.flimflam.failed": "Flim-flamming failed!",
   "commands.eplus.flimflam.luck": "Luck of %s: %s",
+  "eplus.info.empower.floor": "The table needs to stand on a 3x3 floor of netherite blocks to be empowered.",
+  "eplus.info.empower.done": "The table is empowered: on this netherite floor, enchantments can go up to level %s.",
   "eplus.configuration.title": "Enchanting Plus Configuration",
   "gui.eplus.other_enchantments": "- Other enchantments -"
 }

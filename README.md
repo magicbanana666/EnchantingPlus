@@ -65,6 +65,17 @@ in between). Every bookshelf gives 1% discount, up to 30%.
 - **Curses** can only be added or removed around **midnight on a full moon**. Portal particles swirl around
   the table when that time has come.
 
+### Higher levels
+
+- On a **3x3 floor of beacon base blocks** (the same floor that unlocks treasures, but day or night), every
+  enchantment can go **2 levels past its normal max** (EG Sharpness VII, Mending III).
+- Make the floor out of **netherite blocks** and right click the table with an **Enchanted Golden Apple** to
+  empower it. The apple is used up. As long as the netherite floor stays, every enchantment can then go up to
+  **level 10** (or its normal max plus 2, if that is higher). The table stays empowered until it is broken.
+- Curses keep their normal max level.
+
+Both numbers can be changed in the config (`levels.floorBonusLevels`, `levels.empoweredMaxLevel`, up to 255).
+
 ### Enchanting animation
 
 When you enchant an item, the table screen closes and the item rises over the book. Rune circles light up on
@@ -142,6 +153,8 @@ The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in g
 | `treasureFactor` | 4.0 | Extra multiplier for treasure enchantments |
 | `curseFactor` | 3.0 | Extra multiplier for curses |
 | `allowOtherEnchantments` | true | Show the "Other enchantments" category |
+| `levels.floorBonusLevels` | 2 | Extra levels for every enchantment on a floor of beacon base blocks |
+| `levels.empoweredMaxLevel` | 10 | Max level for every enchantment at an empowered table on a netherite floor |
 | `blacklistedItems` | [] | Items that can't be enchanted, EG `"minecraft:elytra"` |
 | `blacklistedEnchantments` | [] | Enchantments that are never offered, EG `"minecraft:mending"` |
 | `luckyMining.tier1Chance` | 0.10 | Base chance of Lucky Mining I to spread an ore |

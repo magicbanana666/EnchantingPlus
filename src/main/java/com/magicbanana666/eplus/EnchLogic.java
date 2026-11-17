@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.magicbanana666.eplus.api.event.AvailableEnchantmentsEvent;
 import com.magicbanana666.eplus.api.event.EnchantmentCostEvent;
+import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.MoonPhase;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EnchantingTableBlock;
 import net.neoforged.neoforge.common.NeoForge;
 
@@ -117,9 +119,11 @@ public final class EnchLogic {
     }
 
     public static boolean isTreasureSetup(Level level, BlockPos pos) {
-        if (!level.isBrightOutside()) {
-            return false;
-        }
+        return level.isBrightOutside() && isBeaconFloor(level, pos);
+    }
+
+    /** Whether the table stands on a 3x3 floor of beacon base blocks (iron, gold, emerald, diamond, netherite...). */
+    public static boolean isBeaconFloor(Level level, BlockPos pos) {
         final BlockPos down = pos.below();
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
@@ -129,6 +133,44 @@ public final class EnchLogic {
             }
         }
         return true;
+    }
+
+    /** Whether the table stands on a 3x3 floor of netherite blocks. */
+    public static boolean isNetheriteFloor(Level level, BlockPos pos) {
+        final BlockPos down = pos.below();
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                if (!level.getBlockState(down.offset(x, 0, z)).is(Blocks.NETHERITE_BLOCK)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /** The highest level Minecraft can store. */
+    public static final int MAX_ENCHANTMENT_LEVEL = 255;
+
+    /**
+     * The highest level an enchantment can get at this table:
+     * <ul>
+     * <li>its normal max level,</li>
+     * <li>plus {@code floorBonusLevels} on a floor of beacon base blocks,</li>
+     * <li>at least {@code empoweredMaxLevel} when the table was empowered with an enchanted golden apple
+     * and still stands on a netherite floor.</li>
+     * </ul>
+     * Curses keep their normal max level.
+     */
+    public static int getMaxLevel(Holder<Enchantment> enchantment, Level level, BlockPos pos) {
+        final int base = enchantment.value().getMaxLevel();
+        if (isCurse(enchantment) || !isBeaconFloor(level, pos)) {
+            return base;
+        }
+        int max = base + EPlusConfig.floorBonusLevels();
+        if (level.getBlockEntity(pos) instanceof AdvancedTableBlockEntity table && table.isEmpowered() && isNetheriteFloor(level, pos)) {
+            max = Math.max(max, EPlusConfig.empoweredMaxLevel());
+        }
+        return Math.min(MAX_ENCHANTMENT_LEVEL, max);
     }
 
     /** Curses can only be added or removed around midnight on a full moon. */

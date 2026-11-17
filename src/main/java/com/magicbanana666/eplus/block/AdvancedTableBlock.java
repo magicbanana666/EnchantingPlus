@@ -1,17 +1,25 @@
 package com.magicbanana666.eplus.block;
 
 import com.mojang.serialization.MapCodec;
+import com.magicbanana666.eplus.EPlusConfig;
 import com.magicbanana666.eplus.EPlusRegistry;
+import com.magicbanana666.eplus.EnchLogic;
 import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
 import com.magicbanana666.eplus.block.entity.BookBlockEntity;
 import com.magicbanana666.eplus.menu.AdvancedTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -77,6 +85,29 @@ public class AdvancedTableBlock extends BaseEntityBlock {
                         offset.getX() + random.nextFloat() - 0.5, offset.getY() - random.nextFloat() - 1.0F, offset.getZ() + random.nextFloat() - 0.5);
             }
         }
+    }
+
+    /** An enchanted golden apple empowers a table that stands on a netherite floor. */
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!stack.is(Items.ENCHANTED_GOLDEN_APPLE) || !(level.getBlockEntity(pos) instanceof AdvancedTableBlockEntity table) || table.isEmpowered()) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+        if (!EnchLogic.isNetheriteFloor(level, pos)) {
+            if (!level.isClientSide()) {
+                player.sendOverlayMessage(Component.translatable("eplus.info.empower.floor"));
+            }
+            return InteractionResult.SUCCESS;
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            stack.consume(1, player);
+            table.setEmpowered(true);
+            serverLevel.playSound(null, pos, SoundEvents.TOTEM_USE, SoundSource.BLOCKS, 0.8F, 1.2F);
+            serverLevel.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            serverLevel.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 80, 0.4, 0.5, 0.4, 0.4);
+            player.sendOverlayMessage(Component.translatable("eplus.info.empower.done", EPlusConfig.empoweredMaxLevel()));
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override

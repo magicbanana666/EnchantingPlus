@@ -9,7 +9,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.magicbanana666.eplus.EPlusRegistry;
 import com.magicbanana666.eplus.EnchLogic;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.UUIDUtil;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
@@ -27,9 +30,36 @@ public class AdvancedTableBlockEntity extends BookBlockEntity {
     ).apply(i, StoredInventory::new));
 
     private final Map<UUID, TableInventory> inventories = new HashMap<>();
+    /** Empowered with an enchanted golden apple: on a netherite floor, enchantments go up to a higher level. */
+    private boolean empowered;
 
     public AdvancedTableBlockEntity(BlockPos pos, BlockState state) {
         super(EPlusRegistry.ADVANCED_TABLE_BE.get(), pos, state);
+    }
+
+    public boolean isEmpowered() {
+        return this.empowered;
+    }
+
+    public void setEmpowered(boolean empowered) {
+        this.empowered = empowered;
+        this.setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
+        }
+    }
+
+    /** Clients only get the empowered flag, not the items of the players. */
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        final CompoundTag tag = new CompoundTag();
+        tag.putBoolean("Empowered", this.empowered);
+        return tag;
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     public TableInventory getInventory(Player player) {
@@ -39,6 +69,7 @@ public class AdvancedTableBlockEntity extends BookBlockEntity {
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
+        output.putBoolean("Empowered", this.empowered);
         final ValueOutput.TypedOutputList<StoredInventory> list = output.list("InvList", STORED_CODEC);
         this.inventories.forEach((owner, inv) -> {
             if (!inv.getItem(0).isEmpty()) {
@@ -50,6 +81,7 @@ public class AdvancedTableBlockEntity extends BookBlockEntity {
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
+        this.empowered = input.getBooleanOr("Empowered", false);
         this.inventories.clear();
         input.listOrEmpty("InvList", STORED_CODEC).stream().forEach(stored -> {
             final TableInventory inv = new TableInventory();

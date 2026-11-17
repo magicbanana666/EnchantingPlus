@@ -18,6 +18,8 @@ public final class EPlusConfig {
     public static final ModConfigSpec.DoubleValue LUCKY_MINING_TIER_1;
     public static final ModConfigSpec.DoubleValue LUCKY_MINING_TIER_2;
     public static final ModConfigSpec.DoubleValue LUCKY_MINING_TIER_3;
+    public static final ModConfigSpec.IntValue FLOOR_BONUS_LEVELS;
+    public static final ModConfigSpec.IntValue EMPOWERED_MAX_LEVEL;
     public static final ModConfigSpec.BooleanValue FLIM_FLAM_SAFE_ONLY;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> FLIM_FLAM_BLACKLIST;
 
@@ -33,6 +35,10 @@ public final class EPlusConfig {
         builder.push("blacklist");
         BLACKLISTED_ITEMS = builder.comment("Items that can't be enchanted with this mod, EG minecraft:diamond_sword. The item tag eplus:blacklisted works too.").defineListAllowEmpty("blacklistedItems", List.of(), () -> "", o -> o instanceof String);
         BLACKLISTED_ENCHANTMENTS = builder.comment("Enchantments that are not available in the advanced table, EG minecraft:mending. The enchantment tag eplus:blacklisted works too.").defineListAllowEmpty("blacklistedEnchantments", List.of(), () -> "", o -> o instanceof String);
+        builder.pop();
+        builder.push("levels");
+        FLOOR_BONUS_LEVELS = builder.comment("Extra levels every enchantment can get when the table stands on a 3x3 floor of beacon base blocks (iron, gold, emerald, diamond, netherite...). EG 2: Sharpness VII, Mending III. Curses don't get extra levels.").defineInRange("floorBonusLevels", 2, 0, 254);
+        EMPOWERED_MAX_LEVEL = builder.comment("The level every enchantment can go up to when the table stands on a 3x3 floor of netherite blocks and was empowered by right clicking it with an enchanted golden apple.").defineInRange("empoweredMaxLevel", 10, 1, 255);
         builder.pop();
         builder.push("luckyMining");
         LUCKY_MINING_TIER_1 = builder.comment("Chance (0-1) that mining an ore with Lucky Mining I spreads it into a stone block next to it. Mining the same ore in a row raises the chance up to twice this value.").defineInRange("tier1Chance", 0.10D, 0D, 1D);
@@ -75,6 +81,14 @@ public final class EPlusConfig {
 
     public static List<? extends String> blacklistedEnchantments() {
         return SPEC.isLoaded() ? BLACKLISTED_ENCHANTMENTS.get() : List.of();
+    }
+
+    public static int floorBonusLevels() {
+        return SPEC.isLoaded() ? FLOOR_BONUS_LEVELS.get() : 2;
+    }
+
+    public static int empoweredMaxLevel() {
+        return SPEC.isLoaded() ? EMPOWERED_MAX_LEVEL.get() : 10;
     }
 
     public static boolean flimFlamSafeOnly() {

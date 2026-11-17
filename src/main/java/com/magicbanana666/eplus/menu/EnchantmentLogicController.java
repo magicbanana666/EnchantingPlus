@@ -101,9 +101,14 @@ public class EnchantmentLogicController {
         return this.initialEnchantments.getOrDefault(enchant, 0);
     }
 
+    /** The highest level the enchantment can get at this table (see {@link EnchLogic#getMaxLevel}). */
+    public int getMaxLevel(Holder<Enchantment> enchantment) {
+        return EnchLogic.getMaxLevel(enchantment, this.level, this.pos);
+    }
+
     /** Whether the enchantment can't be changed right now (it conflicts with another one, or is above its max level). */
     public boolean isLocked(Holder<Enchantment> enchantment) {
-        if (this.getCurrentLevel(enchantment) > enchantment.value().getMaxLevel()) {
+        if (this.getCurrentLevel(enchantment) > this.getMaxLevel(enchantment)) {
             return true;
         }
         for (final Map.Entry<Holder<Enchantment>, Integer> other : this.itemEnchantments.entrySet()) {
@@ -120,7 +125,7 @@ public class EnchantmentLogicController {
             return false;
         }
         final int initial = this.getInitialLevel(enchantment);
-        level = Math.max(0, Math.min(level, Math.max(initial, enchantment.value().getMaxLevel())));
+        level = Math.max(0, Math.min(level, Math.max(initial, this.getMaxLevel(enchantment))));
         // Damaged items can't have enchantments taken off.
         if (level < initial && this.inputStack.isDamaged()) {
             level = initial;

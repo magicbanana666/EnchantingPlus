@@ -88,6 +88,7 @@ public final class FlimFlamTests {
         TESTS.put("luck_equal_does_nothing", FlimFlamTests::luckEqual);
         TESTS.put("command_flimflam", FlimFlamTests::command);
         TESTS.put("old_eplus_ids_still_load", FlimFlamTests::oldIds);
+        TESTS.put("exclusive_with_the_original_mods", FlimFlamTests::exclusiveSets);
     }
 
     private FlimFlamTests() {
@@ -332,7 +333,8 @@ public final class FlimFlamTests {
         // Blow one up next to the player: no block damage, no player damage.
         final Creeper creeper = creepers.getFirst();
         creepers.stream().skip(1).forEach(Creeper::discard);
-        creeper.teleportTo(p.getX() + 1, p.getY(), p.getZ());
+        // On the player's own block: the next block over can be in a chunk the test server does not tick.
+        creeper.teleportTo(p.getX(), p.getY(), p.getZ());
         creeper.setNoAi(false);
         creeper.ignite();
         final float health = p.getHealth();
@@ -451,6 +453,15 @@ public final class FlimFlamTests {
         check(helper, net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE.get(), "eplus:advanced_table block does not map to the table");
         check(helper, net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE_ITEM.get(), "eplus:advanced_table item does not map to the table");
         check(helper, net.minecraft.core.registries.BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE_BE.get(), "eplus:advanced_table block entity does not map to the table");
+        helper.succeed();
+    }
+
+    /** Lucky Mining and Flim Flam can't share an item with the enchantments of the mods they were ported from. */
+    private static void exclusiveSets(GameTestHelper helper) {
+        check(helper, enchantment(helper, com.magicbanana666.eplus.enchantment.LuckyMining.ENCHANTMENT).value().exclusiveSet().unwrapKey()
+                .map(k -> k.location().equals(EnchantingPlus.id("exclusive_set/lucky_mining"))).orElse(false), "Lucky Mining has no exclusive set");
+        check(helper, enchantment(helper, FlimFlam.ENCHANTMENT).value().exclusiveSet().unwrapKey()
+                .map(k -> k.location().equals(EnchantingPlus.id("exclusive_set/flim_flam"))).orElse(false), "Flim Flam has no exclusive set");
         helper.succeed();
     }
 

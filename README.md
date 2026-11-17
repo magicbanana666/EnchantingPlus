@@ -105,7 +105,8 @@ It is a normal (non-treasure) enchantment, so it is also available from the vani
 villagers and loot. Which blocks spread and which blocks they can replace are set by the block tags
 `eplusplus:lucky_mining/ores` and `eplusplus:lucky_mining/stones`.
 
-Lucky Mining is a port of [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC) by Buuz135 (MIT).
+Lucky Mining is a port of [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC) by Buuz135 (MIT). If that mod
+is installed too, the two Lucky Minings can't go on the same item (tag `eplusplus:exclusive_set/lucky_mining`).
 
 ## Flim Flam
 
@@ -143,7 +144,8 @@ Commands (needs cheats / op):
 - `/flimflam luck <player> [<amount>]` - show the luck of a player, or add to it (EG `-500` for very bad luck).
 
 Flim Flam is a port of the enchantment from [OpenBlocks](https://github.com/OpenMods/OpenBlocks) by the OpenMods
-Team (MIT). The custom OpenBlocks sounds (mosquito, alarm clock, ...) were replaced by vanilla sounds.
+Team (MIT). If a mod adds `openblocks:flim_flam` too, the two can't go on the same item (tag
+`eplusplus:exclusive_set/flim_flam`). The custom OpenBlocks sounds (mosquito, alarm clock, ...) were replaced by vanilla sounds.
 
 ## Coming from Enchanting Plus 6.x
 

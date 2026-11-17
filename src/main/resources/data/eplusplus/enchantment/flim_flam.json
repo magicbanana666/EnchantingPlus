@@ -1,5 +1,6 @@
 {
   "anvil_cost": 4,
+  "exclusive_set": "#eplusplus:exclusive_set/flim_flam",
   "description": {
     "translate": "enchantment.eplusplus.flim_flam"
   },

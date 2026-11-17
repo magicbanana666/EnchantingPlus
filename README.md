@@ -1,16 +1,19 @@
-# Enchanting Plus (26.1.2)
+# Enchanting Plus Plus (26.3)
 
-Enchanting Plus gives you full control over enchanting. Instead of the random enchanting table, the
+Enchanting Plus Plus gives you full control over enchanting. Instead of the random enchanting table, the
 **Advanced Enchantment Table** lets you pick exactly which enchantments go on an item, and at which level,
 and you pay for it with experience.
 
-Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies. It also adds the
+Enchanting Plus Plus is for **Minecraft 26.3 on NeoForge** and has no dependencies. It also adds the
 [Lucky Mining](#lucky-mining) and [Flim Flam](#flim-flam) enchantments.
+
+Enchanting Plus Plus started as a port of [Enchanting Plus](https://github.com/Epoxide-Software/Enchanting-Plus)
+by Darkhax and contributors, and was called Enchanting Plus up to version 6.2.
 
 ## Download / install
 
-1. Grab the jar from the [Releases](https://github.com/magicbanana666/EnchantingPlus/releases) page.
-2. Put it in the `mods` folder of a Minecraft 26.1.2 NeoForge instance (NeoForge 26.1.2.115 or newer).
+1. Grab the jar from the [Releases](https://github.com/magicbanana666/EnchantingPlusPlus/releases) page.
+2. Put it in the `mods` folder of a Minecraft 26.3 NeoForge instance (NeoForge 26.3.0.90 or newer).
 3. The mod is needed on both the client and the server.
 
 ## Getting the Advanced Enchantment Table
@@ -81,7 +84,7 @@ Both numbers can be changed in the config (`levels.floorBonusLevels`, `levels.em
 When you enchant an item, the table screen closes and the item rises over the book. Rune circles light up on
 the table, glyphs fly in from the bookshelves while the item spins up, and it ends in a burst of sparkles with
 a beam of light. Other players nearby see it too. You can turn it off, or keep the screen open, in
-`config/eplus-client.toml` (`enchantAnimation`, `closeScreenOnEnchant`).
+`config/eplusplus-client.toml` (`enchantAnimation`, `closeScreenOnEnchant`).
 
 The animation is based on [Cinematic Interactions](https://modrinth.com/mod/cinematic-interactions) by Southware (MIT).
 
@@ -93,14 +96,14 @@ the table are your normal armor slots.
 
 ## Lucky Mining
 
-Enchanting Plus adds one enchantment of its own: **Lucky Mining** (I-III, pickaxes). When you mine an ore,
+Enchanting Plus Plus adds two enchantments of its own. The first is **Lucky Mining** (I-III, pickaxes). When you mine an ore,
 there is a chance that a stone block next to it turns into the same ore, with green and gold particles and
 a chime. The base chance is 10% / 15% / 20%; mining the same ore again within 3 seconds raises it, up to
 twice the base chance.
 
 It is a normal (non-treasure) enchantment, so it is also available from the vanilla enchanting table,
 villagers and loot. Which blocks spread and which blocks they can replace are set by the block tags
-`eplus:lucky_mining/ores` and `eplus:lucky_mining/stones`.
+`eplusplus:lucky_mining/ores` and `eplusplus:lucky_mining/stones`.
 
 Lucky Mining is a port of [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC) by Buuz135 (MIT).
 
@@ -142,9 +145,19 @@ Commands (needs cheats / op):
 Flim Flam is a port of the enchantment from [OpenBlocks](https://github.com/OpenMods/OpenBlocks) by the OpenMods
 Team (MIT). The custom OpenBlocks sounds (mosquito, alarm clock, ...) were replaced by vanilla sounds.
 
+## Coming from Enchanting Plus 6.x
+
+Version 7.0 changed the mod id from `eplus` to `eplusplus`. Advanced tables in old worlds are kept (the old
+ids are mapped to the new ones), but:
+
+- Lucky Mining and Flim Flam on items from 6.2 are lost (they are now `eplusplus:lucky_mining` and
+  `eplusplus:flim_flam`).
+- The config files are now `eplusplus-synced.toml` and `eplusplus-client.toml`; copy your settings over.
+- Datapacks that use the `eplus:` tags (EG `eplus:blacklisted`) need to use `eplusplus:` instead.
+
 ## Configuration
 
-The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in game through the mod list):
+The settings are in `config/eplusplus-synced.toml` (also editable in game through the mod list):
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -163,7 +176,7 @@ The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in g
 | `flimFlam.safeOnly` | false | Only allow Flim Flam pranks that don't kill |
 | `flimFlam.blacklist` | [] | Flim Flam pranks that never happen, EG `"skyblock"` |
 
-Modpacks can also use the item tag `eplus:blacklisted` and the enchantment tag `eplus:blacklisted`.
+Modpacks can also use the item tag `eplusplus:blacklisted` and the enchantment tag `eplusplus:blacklisted`.
 
 ## For mod developers
 

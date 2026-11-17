@@ -86,6 +86,6 @@ def export_table(assets, elements, textures):
     for name,(texture,emission,tint) in materials.items():
         mtl.extend(['newmtl '+name,f'Kd {tint} {tint} {tint}',f'Ka {emission/15:.6f} {emission/15:.6f} {emission/15:.6f}','map_Kd #'+texture,''])
     (model_dir/'advanced_table.mtl').write_text('\n'.join(mtl))
-    model={'parent':'minecraft:block/block','loader':'neoforge:obj','model':'eplus:models/block/advanced_table.obj','automatic_culling':False,'shade_quads':True,'flip_v':True,'emissive_ambient':True,'ambientocclusion':True,'textures':textures}
+    model={'parent':'minecraft:block/block','loader':'neoforge:obj','model':'eplusplus:models/block/advanced_table.obj','automatic_culling':False,'shade_quads':True,'flip_v':True,'emissive_ambient':True,'ambientocclusion':True,'textures':textures}
     (model_dir/'advanced_table.json').write_text(json.dumps(model,indent=2)+'\n')
     return faces

@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / 'src/main/resources/assets/eplus'
+ASSETS = ROOT / 'src/main/resources/assets/eplusplus'
 OUT = ASSETS / 'textures/block/arcane_table'
 OUT.mkdir(parents=True, exist_ok=True)
 RNG = random.Random(1741)
@@ -172,7 +172,7 @@ for x in (2.2,13.8):
     for z in (2.2,13.8):
         box('Brass crystal socket',[x-1.1,11.8,z-1.1],[x+1.1,12.25,z+1.1],'brass')
 
-textures = {n:'eplus:block/arcane_table/'+n for n in ('stone','brass','pillar','panel','top','crystal','edge')}
+textures = {n:'eplusplus:block/arcane_table/'+n for n in ('stone','brass','pillar','panel','top','crystal','edge')}
 textures['particle'] = textures['stone']
 from table_mesh import export_table
 mesh_faces=export_table(ASSETS,elements,textures)

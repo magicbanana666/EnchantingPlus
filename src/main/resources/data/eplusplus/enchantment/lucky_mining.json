@@ -1,7 +1,7 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.eplus.lucky_mining"
+    "translate": "enchantment.eplusplus.lucky_mining"
   },
   "max_cost": {
     "base": 65,
@@ -15,6 +15,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#eplus:enchantable/lucky_mining",
+  "supported_items": "#eplusplus:enchantable/lucky_mining",
   "weight": 2
 }

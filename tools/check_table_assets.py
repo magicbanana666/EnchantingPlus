@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
-ASSETS=ROOT/'src/main/resources/assets/eplus'
+ASSETS=ROOT/'src/main/resources/assets/eplusplus'
 MODEL=ASSETS/'models/block'
 model=json.loads((MODEL/'advanced_table.json').read_text())
 assert model['loader']=='neoforge:obj' and model['automatic_culling'] is False

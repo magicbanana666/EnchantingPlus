@@ -68,13 +68,13 @@ public final class EnchantFxRender {
             .withCull(false)
             .build();
 
-    public static final RenderType CIRCLE = RenderType.create("eplus_enchant_circle",
+    public static final RenderType CIRCLE = RenderType.create("eplusplus_enchant_circle",
             RenderSetup.builder(CIRCLE_PIPELINE).withTexture("Sampler0", CIRCLE_TEXTURE).sortOnUpload().createRenderSetup());
-    public static final RenderType GLOW = RenderType.create("eplus_enchant_glow",
+    public static final RenderType GLOW = RenderType.create("eplusplus_enchant_glow",
             RenderSetup.builder(GLOW_PIPELINE).withTexture("Sampler0", GLOW_TEXTURE).sortOnUpload().createRenderSetup());
-    public static final RenderType BEAM = RenderType.create("eplus_enchant_beam",
+    public static final RenderType BEAM = RenderType.create("eplusplus_enchant_beam",
             RenderSetup.builder(GLOW_PIPELINE).withTexture("Sampler0", BEAM_TEXTURE).sortOnUpload().createRenderSetup());
-    public static final RenderType RIBBON = RenderType.create("eplus_enchant_ribbon",
+    public static final RenderType RIBBON = RenderType.create("eplusplus_enchant_ribbon",
             RenderSetup.builder(GLOW_PIPELINE).withTexture("Sampler0", RIBBON_TEXTURE).sortOnUpload().createRenderSetup());
 
     /** Muted violet, matching the reference's inlaid circle and crystals. */

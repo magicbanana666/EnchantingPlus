@@ -37,7 +37,7 @@ import org.jspecify.annotations.Nullable;
 public class AdvancedTableBlock extends BaseEntityBlock {
 
     private static final VoxelShape SHAPE = Block.column(16.0, 0.0, 12.0);
-    private static final Component TITLE = Component.translatable("block.eplus.advanced_table");
+    private static final Component TITLE = Component.translatable("block.eplusplus.advanced_table");
 
     public AdvancedTableBlock(Properties properties) {
         super(properties);
@@ -88,7 +88,7 @@ public class AdvancedTableBlock extends BaseEntityBlock {
         }
         if (!EnchLogic.isNetheriteFloor(level, pos)) {
             if (!level.isClientSide()) {
-                player.sendOverlayMessage(Component.translatable("eplus.info.empower.floor"));
+                player.sendOverlayMessage(Component.translatable("eplusplus.info.empower.floor"));
             }
             return InteractionResult.SUCCESS;
         }
@@ -98,7 +98,7 @@ public class AdvancedTableBlock extends BaseEntityBlock {
             serverLevel.playSound(null, pos, SoundEvents.TOTEM_USE, SoundSource.BLOCKS, 0.8F, 1.2F);
             serverLevel.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
             serverLevel.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 80, 0.4, 0.5, 0.4, 0.4);
-            player.sendOverlayMessage(Component.translatable("eplus.info.empower.done", EPlusConfig.empoweredMaxLevel()));
+            player.sendOverlayMessage(Component.translatable("eplusplus.info.empower.done", EPlusConfig.empoweredMaxLevel()));
         }
         return InteractionResult.SUCCESS;
     }

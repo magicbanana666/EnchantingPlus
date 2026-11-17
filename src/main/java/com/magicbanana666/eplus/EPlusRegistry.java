@@ -26,7 +26,7 @@ public final class EPlusRegistry {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EnchantingPlus.MOD_ID);
 
     public static final DeferredBlock<AdvancedTableBlock> ADVANCED_TABLE = BLOCKS.registerBlock("advanced_table", AdvancedTableBlock::new,
-            p -> p.mapColor(MapColor.COLOR_PURPLE).requiresCorrectToolForDrops().lightLevel(s -> 7).strength(5.0F, 1200.0F));
+            p -> p.mapColor(MapColor.COLOR_PURPLE).noOcclusion().requiresCorrectToolForDrops().lightLevel(s -> 7).strength(5.0F, 1200.0F));
     public static final DeferredItem<BlockItem> ADVANCED_TABLE_ITEM = ITEMS.registerSimpleBlockItem(ADVANCED_TABLE);
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AdvancedTableBlockEntity>> ADVANCED_TABLE_BE = BLOCK_ENTITIES.register("advanced_table",

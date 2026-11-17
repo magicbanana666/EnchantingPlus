@@ -6,6 +6,10 @@ The textures (`src/main/resources/assets/eplus/textures`) and the translations i
 GnRSlash and contributors, released under the
 [GNU LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
 
+The arcane table textures and model (`textures/block/arcane_table`, `textures/entity/book/arcane.png`,
+`textures/fx/arcane_*.png` and `models/block/advanced_table.obj`) were made for this mod with
+`tools/build_table_assets.py`, and fall under the license in `../LICENSE.md`.
+
 The Lucky Mining enchantment (`src/main/java/com/magicbanana666/eplus/enchantment/LuckyMining.java` and the
 `lucky_mining` data files) is ported from [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC), released
 under the MIT License:

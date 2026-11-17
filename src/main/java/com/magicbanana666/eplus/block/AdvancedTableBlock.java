@@ -2,13 +2,10 @@ package com.magicbanana666.eplus.block;
 
 import com.mojang.serialization.MapCodec;
 import com.magicbanana666.eplus.EPlusRegistry;
-import com.magicbanana666.eplus.EnchLogic;
 import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
 import com.magicbanana666.eplus.block.entity.BookBlockEntity;
 import com.magicbanana666.eplus.menu.AdvancedTableMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -35,8 +32,6 @@ public class AdvancedTableBlock extends BaseEntityBlock {
     public static final MapCodec<AdvancedTableBlock> CODEC = simpleCodec(AdvancedTableBlock::new);
     private static final VoxelShape SHAPE = Block.column(16.0, 0.0, 12.0);
     private static final Component TITLE = Component.translatable("block.eplus.advanced_table");
-    private static final ParticleOptions TREASURE_DUST_A = new DustParticleOptions(0xFFD54F, 1.0F);
-    private static final ParticleOptions TREASURE_DUST_B = new DustParticleOptions(0xFFFFFF, 1.0F);
 
     public AdvancedTableBlock(Properties properties) {
         super(properties);
@@ -69,22 +64,8 @@ public class AdvancedTableBlock extends BaseEntityBlock {
 
     private static void clientTick(Level level, BlockPos pos, BlockState state, AdvancedTableBlockEntity table) {
         BookBlockEntity.bookAnimationTick(level, pos, state, table);
-        if (table.open <= 0f || table.time % 4 != 0) {
-            return;
-        }
-        // Show when curses (full moon midnight) or treasures (daylight + beacon base floor) are available.
-        if (EnchLogic.isWickedNight(level, pos)) {
-            spawnParticleRing(level, ParticleTypes.PORTAL, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, -1, 0, 0.45);
-        }
-        else if (level.getRandom().nextBoolean() && EnchLogic.isTreasureSetup(level, pos)) {
-            spawnParticleRing(level, table.time % 8 == 0 ? TREASURE_DUST_A : TREASURE_DUST_B, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 0, 0, 0.45);
-        }
-    }
-
-    private static void spawnParticleRing(Level level, ParticleOptions particle, double x, double y, double z, double vx, double vy, double vz, double step) {
-        for (double degree = 0.0d; degree < 2 * Math.PI; degree += step) {
-            level.addParticle(particle, x + Math.cos(degree), y, z + Math.sin(degree), vx, vy, vz);
-        }
+        // Ambient visuals are owned by BookRenderer. Do not layer the legacy
+        // full-moon portal ring or treasure dust over its permanent aura.
     }
 
     @Override

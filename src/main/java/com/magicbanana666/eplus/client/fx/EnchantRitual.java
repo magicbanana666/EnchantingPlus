@@ -47,7 +47,7 @@ public final class EnchantRitual {
 
     private static final Map<BlockPos, EnchantRitual> ACTIVE = new HashMap<>();
     private static final RandomSource RANDOM = RandomSource.create();
-    private static final float[][] PALETTE = {{0.75F, 0.45F, 1.0F}, {0.45F, 0.8F, 1.0F}, {1.0F, 0.92F, 1.0F}};
+    private static final float[][] PALETTE = {{0.70F, 0.50F, 0.85F}, {0.61F, 0.58F, 0.76F}, {0.95F, 0.86F, 1.0F}};
     private static final int MAX_SPARKS = 400;
 
     public final BlockPos pos;

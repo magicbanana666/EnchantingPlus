@@ -38,3 +38,9 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+### Python ###
+__pycache__/
+
+### Reference images for tools/build_table_assets.py (not shipped) ###
+tools/art/

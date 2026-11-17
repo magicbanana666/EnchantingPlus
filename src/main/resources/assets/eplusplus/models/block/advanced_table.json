@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "neoforge:obj",
+  "model": "eplusplus:models/block/advanced_table.obj",
+  "automatic_culling": false,
+  "shade_quads": true,
+  "flip_v": true,
+  "emissive_ambient": true,
+  "ambientocclusion": true,
+  "textures": {
+    "stone": "eplusplus:block/arcane_table/stone",
+    "brass": "eplusplus:block/arcane_table/brass",
+    "pillar": "eplusplus:block/arcane_table/pillar",
+    "panel": "eplusplus:block/arcane_table/panel",
+    "top": "eplusplus:block/arcane_table/top",
+    "crystal": "eplusplus:block/arcane_table/crystal",
+    "edge": "eplusplus:block/arcane_table/edge",
+    "particle": "eplusplus:block/arcane_table/stone"
+  }
+}

@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 @Mod(EnchantingPlus.MOD_ID)
 public final class EnchantingPlus {
 
-    public static final String MOD_ID = "eplus";
+    public static final String MOD_ID = "eplusplus";
     public static final Logger LOG = LogUtils.getLogger();
 
     public EnchantingPlus(IEventBus modBus, ModContainer container) {

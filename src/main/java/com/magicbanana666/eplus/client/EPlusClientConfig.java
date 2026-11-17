@@ -2,7 +2,7 @@ package com.magicbanana666.eplus.client;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-/** Client settings, in config/eplus-client.toml. */
+/** Client settings, in config/eplusplus-client.toml. */
 public final class EPlusClientConfig {
 
     public static final ModConfigSpec SPEC;

@@ -1,7 +1,7 @@
 # Third-party assets
 
-The textures (`src/main/resources/assets/eplus/textures`) and the translations in
-`src/main/resources/assets/eplus/lang` come from the original
+The textures (`src/main/resources/assets/eplusplus/textures`) and the translations in
+`src/main/resources/assets/eplusplus/lang` come from the original
 [Enchanting Plus](https://github.com/Epoxide-Software/Enchanting-Plus) by Darkhax, lclc98, Xkyouchoux, odininon,
 GnRSlash and contributors, released under the
 [GNU LGPL-2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
@@ -40,7 +40,7 @@ SOFTWARE.
 
 The enchanting animation (`src/main/java/com/magicbanana666/eplus/client/fx`) is based on the enchanting effects of
 [Cinematic Interactions](https://modrinth.com/mod/cinematic-interactions) by Southware, and the textures in
-`src/main/resources/assets/eplus/textures/fx` come from that mod. It is released under the MIT License:
+`src/main/resources/assets/eplusplus/textures/fx` come from that mod. It is released under the MIT License:
 
 ```
 MIT License

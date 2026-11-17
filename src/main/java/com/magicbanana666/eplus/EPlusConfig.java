@@ -33,8 +33,8 @@ public final class EPlusConfig {
         ALLOW_OTHER_ENCHANTMENTS = builder.comment("Also offer enchantments that are not meant for the item (EG Protection on a sword), listed under 'Other enchantments'.").define("allowOtherEnchantments", true);
         builder.pop();
         builder.push("blacklist");
-        BLACKLISTED_ITEMS = builder.comment("Items that can't be enchanted with this mod, EG minecraft:diamond_sword. The item tag eplus:blacklisted works too.").defineListAllowEmpty("blacklistedItems", List.of(), () -> "", o -> o instanceof String);
-        BLACKLISTED_ENCHANTMENTS = builder.comment("Enchantments that are not available in the advanced table, EG minecraft:mending. The enchantment tag eplus:blacklisted works too.").defineListAllowEmpty("blacklistedEnchantments", List.of(), () -> "", o -> o instanceof String);
+        BLACKLISTED_ITEMS = builder.comment("Items that can't be enchanted with this mod, EG minecraft:diamond_sword. The item tag eplusplus:blacklisted works too.").defineListAllowEmpty("blacklistedItems", List.of(), () -> "", o -> o instanceof String);
+        BLACKLISTED_ENCHANTMENTS = builder.comment("Enchantments that are not available in the advanced table, EG minecraft:mending. The enchantment tag eplusplus:blacklisted works too.").defineListAllowEmpty("blacklistedEnchantments", List.of(), () -> "", o -> o instanceof String);
         builder.pop();
         builder.push("levels");
         FLOOR_BONUS_LEVELS = builder.comment("Extra levels every enchantment can get when the table stands on a 3x3 floor of beacon base blocks (iron, gold, emerald, diamond, netherite...). EG 2: Sharpness VII, Mending III. Curses don't get extra levels.").defineInRange("floorBonusLevels", 2, 0, 254);

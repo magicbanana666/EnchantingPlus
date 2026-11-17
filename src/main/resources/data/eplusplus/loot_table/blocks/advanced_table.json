@@ -12,10 +12,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eplus:advanced_table"
+          "name": "eplusplus:advanced_table"
         }
       ]
     }
   ],
-  "random_sequence": "eplus:blocks/advanced_table"
+  "random_sequence": "eplusplus:blocks/advanced_table"
 }

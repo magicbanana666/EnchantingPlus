@@ -1,0 +1,23 @@
+{
+  "block.eplusplus.advanced_table": "Gelişmiş Büyü Masası",
+  "itemGroup.eplusplus": "Enchanting Plus Plus",
+  "eplusplus.info.playerxp": "EXP: %s",
+  "eplusplus.info.costxp": "Ücret: %s",
+  "eplusplus.info.infinity": "EXP: ∞",
+  "eplusplus.info.power": "İndirim: %s%%",
+  "gui.eplusplus.info.noitem": "Mevcut büyüleri görmek için bir eşyayı koy.",
+  "gui.eplusplus.info.noench": "Bu eşya için mevcut bir büyü yok.",
+  "gui.eplusplus.info.tooexpensive": "Bu büyüyü yapman için daha fazla tecrübe puanına ihtiyacın var.",
+  "eplusplus.info.tip.prefix": "İpucu: ",
+  "eplusplus.info.tip.description": "Büyü kaydırıcısında %s tuşuna basılı tutarak açıklamayı gör.",
+  "eplusplus.info.tip.books": "Büyülerin ücretlerini düşürmek için masanın etrafına kitaplık koyabilirsin.",
+  "eplusplus.info.tip.treasure": "Hazine büyülerinin bir kat dolusu değerli malzemelere ve gün ışığına ihtiyacı var.",
+  "eplusplus.info.tip.curse": "Lanetler sadece gece yarısına doğru veya dolunay olduğunda değiştirilebilir.",
+  "eplusplus.info.tip.storage": "Gelişmiş masa envanterini bir sandık gibi depolar.",
+  "eplusplus.info.tip.inventory": "Masada her oyuncunun kendine özgü envanteri vardır. Masa kırıldığında tüm envanterlerin içeriklerinin düşmesi gerçekleşir.",
+  "eplusplus.info.tip.armor": "Yandaki zırh slotları aynı oyuncu envanterindeki gibidir.",
+  "gui.eplusplus.tooltip.tooexpensive": "Büyülerin çok pahalı!",
+  "gui.eplusplus.tooltip.enchant": "Tıklayarak büyüyü bas.",
+  "gui.eplusplus.tooltip.nochange": "Hiçbir değişim yapılmadı.",
+  "tooltip.eplusplus.missing": "Açıklama bulunamadı. %s yapımcısından eklemesini isteyebilirsin, veya kendin ekleyebilirsin. Lokalizasyon tuşu %s"
+}

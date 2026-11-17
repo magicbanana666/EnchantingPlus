@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "eplusplus:block/advanced_table"
+    }
+  }
+}

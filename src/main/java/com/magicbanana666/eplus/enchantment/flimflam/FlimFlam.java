@@ -76,8 +76,8 @@ public final class FlimFlam {
     private static final DeferredRegister<AttachmentType<?>> ATTACHMENTS = DeferredRegister.create(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, EnchantingPlus.MOD_ID);
     public static final Supplier<AttachmentType<Luck>> LUCK = ATTACHMENTS.register("luck", () -> AttachmentType.builder(() -> new Luck()).serialize(Luck.CODEC).build());
 
-    private static final SimpleCommandExceptionType UNKNOWN_EFFECT = new SimpleCommandExceptionType(Component.translatable("commands.eplus.flimflam.unknown"));
-    private static final SimpleCommandExceptionType FAILED = new SimpleCommandExceptionType(Component.translatable("commands.eplus.flimflam.failed"));
+    private static final SimpleCommandExceptionType UNKNOWN_EFFECT = new SimpleCommandExceptionType(Component.translatable("commands.eplusplus.flimflam.unknown"));
+    private static final SimpleCommandExceptionType FAILED = new SimpleCommandExceptionType(Component.translatable("commands.eplusplus.flimflam.failed"));
 
     private FlimFlam() {
     }
@@ -182,7 +182,7 @@ public final class FlimFlam {
         try {
             if (effect.action().execute(player)) {
                 if (!effect.silent()) {
-                    player.sendSystemMessage(Component.translatable("eplus.flimflam.flimflammed"));
+                    player.sendSystemMessage(Component.translatable("eplusplus.flimflam.flimflammed"));
                 }
                 return true;
             }
@@ -246,7 +246,7 @@ public final class FlimFlam {
             }
             if (execute(target, effect)) {
                 done++;
-                ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplus.flimflam.success", target.getDisplayName(), effect.name()), true);
+                ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplusplus.flimflam.success", target.getDisplayName(), effect.name()), true);
             }
         }
         if (done == 0) {
@@ -258,7 +258,7 @@ public final class FlimFlam {
     private static int showLuck(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         final ServerPlayer player = EntityArgument.getPlayer(ctx, "player");
         final int value = luck(player).luck;
-        ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplus.flimflam.luck", player.getDisplayName(), value), false);
+        ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplusplus.flimflam.luck", player.getDisplayName(), value), false);
         return value;
     }
 
@@ -267,7 +267,7 @@ public final class FlimFlam {
         final Luck luck = luck(player);
         luck.luck += IntegerArgumentType.getInteger(ctx, "amount");
         final int value = luck.luck;
-        ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplus.flimflam.luck", player.getDisplayName(), value), true);
+        ctx.getSource().sendSuccess(() -> Component.translatable("commands.eplusplus.flimflam.luck", player.getDisplayName(), value), true);
         return value;
     }
 }

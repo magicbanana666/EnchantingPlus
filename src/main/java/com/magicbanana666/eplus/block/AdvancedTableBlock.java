@@ -1,20 +1,25 @@
 package com.magicbanana666.eplus.block;
 
 import com.mojang.serialization.MapCodec;
+import com.magicbanana666.eplus.EPlusConfig;
 import com.magicbanana666.eplus.EPlusRegistry;
 import com.magicbanana666.eplus.EnchLogic;
 import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
 import com.magicbanana666.eplus.block.entity.BookBlockEntity;
 import com.magicbanana666.eplus.menu.AdvancedTableMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -35,8 +40,6 @@ public class AdvancedTableBlock extends BaseEntityBlock {
     public static final MapCodec<AdvancedTableBlock> CODEC = simpleCodec(AdvancedTableBlock::new);
     private static final VoxelShape SHAPE = Block.column(16.0, 0.0, 12.0);
     private static final Component TITLE = Component.translatable("block.eplus.advanced_table");
-    private static final ParticleOptions TREASURE_DUST_A = new DustParticleOptions(0xFFD54F, 1.0F);
-    private static final ParticleOptions TREASURE_DUST_B = new DustParticleOptions(0xFFFFFF, 1.0F);
 
     public AdvancedTableBlock(Properties properties) {
         super(properties);
@@ -69,22 +72,8 @@ public class AdvancedTableBlock extends BaseEntityBlock {
 
     private static void clientTick(Level level, BlockPos pos, BlockState state, AdvancedTableBlockEntity table) {
         BookBlockEntity.bookAnimationTick(level, pos, state, table);
-        if (table.open <= 0f || table.time % 4 != 0) {
-            return;
-        }
-        // Show when curses (full moon midnight) or treasures (daylight + beacon base floor) are available.
-        if (EnchLogic.isWickedNight(level, pos)) {
-            spawnParticleRing(level, ParticleTypes.PORTAL, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, -1, 0, 0.45);
-        }
-        else if (level.getRandom().nextBoolean() && EnchLogic.isTreasureSetup(level, pos)) {
-            spawnParticleRing(level, table.time % 8 == 0 ? TREASURE_DUST_A : TREASURE_DUST_B, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 0, 0, 0.45);
-        }
-    }
-
-    private static void spawnParticleRing(Level level, ParticleOptions particle, double x, double y, double z, double vx, double vy, double vz, double step) {
-        for (double degree = 0.0d; degree < 2 * Math.PI; degree += step) {
-            level.addParticle(particle, x + Math.cos(degree), y, z + Math.sin(degree), vx, vy, vz);
-        }
+        // Ambient visuals are owned by BookRenderer. Do not layer the legacy
+        // full-moon portal ring or treasure dust over its permanent aura.
     }
 
     @Override
@@ -96,6 +85,29 @@ public class AdvancedTableBlock extends BaseEntityBlock {
                         offset.getX() + random.nextFloat() - 0.5, offset.getY() - random.nextFloat() - 1.0F, offset.getZ() + random.nextFloat() - 0.5);
             }
         }
+    }
+
+    /** An enchanted golden apple empowers a table that stands on a netherite floor. */
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!stack.is(Items.ENCHANTED_GOLDEN_APPLE) || !(level.getBlockEntity(pos) instanceof AdvancedTableBlockEntity table) || table.isEmpowered()) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+        if (!EnchLogic.isNetheriteFloor(level, pos)) {
+            if (!level.isClientSide()) {
+                player.sendOverlayMessage(Component.translatable("eplus.info.empower.floor"));
+            }
+            return InteractionResult.SUCCESS;
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            stack.consume(1, player);
+            table.setEmpowered(true);
+            serverLevel.playSound(null, pos, SoundEvents.TOTEM_USE, SoundSource.BLOCKS, 0.8F, 1.2F);
+            serverLevel.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            serverLevel.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 80, 0.4, 0.5, 0.4, 0.4);
+            player.sendOverlayMessage(Component.translatable("eplus.info.empower.done", EPlusConfig.empoweredMaxLevel()));
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override

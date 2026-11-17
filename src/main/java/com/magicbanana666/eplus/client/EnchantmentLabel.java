@@ -64,7 +64,7 @@ public class EnchantmentLabel {
             graphics.text(font, this.header, this.x + (WIDTH - font.width(this.header)) / 2, this.y + 6, 0xFF404040, false);
             return;
         }
-        final int maxLevel = this.enchantment.value().getMaxLevel();
+        final int maxLevel = this.logic.getMaxLevel(this.enchantment);
         final int currentLevel = this.getCurrentLevel();
         final int indexX = this.dragging ? this.sliderX : currentLevel <= maxLevel ? (int) (this.x + 1 + (WIDTH - 6) * (currentLevel / (double) maxLevel)) : this.x + 1 + WIDTH - 6;
         graphics.fill(this.x + 1, this.y + 2, this.x + WIDTH, this.y + HEIGHT, this.isLocked() ? COLOR_BACKGROUND_LOCKED : COLOR_BACKGROUND_AVAILABLE);
@@ -104,7 +104,7 @@ public class EnchantmentLabel {
         // Updates the position of the slider. -2 to center the cursor on the mouse position.
         this.sliderX = Math.max(min, Math.min(max, min + relX - 2));
         final float index = relX / (float) (WIDTH - 10);
-        final int maxLevel = this.enchantment.value().getMaxLevel();
+        final int maxLevel = this.logic.getMaxLevel(this.enchantment);
         final int initialLevel = this.logic.getInitialLevel(this.enchantment);
         final int updatedLevel = Math.max(0, Math.min(maxLevel, Math.round(maxLevel * index)));
         // Damaged items can't lose enchantments.

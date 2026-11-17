@@ -1,6 +1,9 @@
 package com.magicbanana666.eplus;
 
 import com.mojang.logging.LogUtils;
+import com.magicbanana666.eplus.enchantment.LuckyMining;
+import com.magicbanana666.eplus.enchantment.flimflam.FlimFlam;
+import com.magicbanana666.eplus.network.EnchantFxPayload;
 import com.magicbanana666.eplus.network.EnchantPayload;
 import com.magicbanana666.eplus.network.SliderUpdatePayload;
 import net.minecraft.resources.Identifier;
@@ -25,12 +28,16 @@ public final class EnchantingPlus {
         EPlusRegistry.register(modBus);
         modBus.addListener(EnchantingPlus::registerPayloads);
         container.registerConfig(ModConfig.Type.SERVER, EPlusConfig.SPEC);
+        LuckyMining.register();
+        FlimFlam.register(modBus);
     }
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar("1");
         registrar.playToServer(SliderUpdatePayload.TYPE, SliderUpdatePayload.STREAM_CODEC, SliderUpdatePayload::handle);
         registrar.playToServer(EnchantPayload.TYPE, EnchantPayload.STREAM_CODEC, EnchantPayload::handle);
+        // Handled on the client only, see EPlusClient
+        registrar.playToClient(EnchantFxPayload.TYPE, EnchantFxPayload.STREAM_CODEC);
     }
 
     public static Identifier id(String path) {

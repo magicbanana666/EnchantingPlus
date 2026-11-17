@@ -12,12 +12,22 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 // Keep build output out of OneDrive (it locks files while syncing)
 layout.buildDirectory = file("${System.getProperty('user.home')}/.gradle-builds/${project.name}")
 
+// Game tests (./gradlew runGameTestServer). Not part of the mod jar.
+sourceSets {
+    gametest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
 neoForge {
     version = neoforge_version
+    addModdingDependenciesTo(sourceSets.gametest)
 
     mods {
         "${mod_id}" {
             sourceSet(sourceSets.main)
+            sourceSet(sourceSets.gametest)
         }
     }
 
@@ -36,6 +46,11 @@ neoForge {
         server {
             server()
             programArgument '--nogui'
+        }
+        gameTestServer {
+            type = "gameTestServer"
+            sourceSet = sourceSets.gametest
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
         }
     }
 }

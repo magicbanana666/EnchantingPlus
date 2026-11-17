@@ -119,9 +119,9 @@ their luck back up a bit. The worse the luck, the worse the pranks:
 | `living-rename` | A nearby mob gets a silly name |
 | `invisible-mobs` | About a third of the nearby mobs turn invisible for 10 minutes |
 | `inventory-shuffle` | The inventory gets shuffled |
-| `squid` | A squid hat |
+| `squid` | A squid with a silly name (EG "Look at my hat!") appears at the victim's feet |
 | `useless-tool` | A completely broken tool or armor piece with a random enchantment drops |
-| `bane` | A bucket, saddle or similar item gets Bane of Arthropods V |
+| `bane` | A water bucket, saddle or similar item gets Bane of Arthropods V |
 | `snowballs` | 200 snowballs shoot up (and come back down) |
 | `disarm` | Some armor and the held item are dropped |
 | `creepers` | 15 charged creepers fall from the sky (their explosions do no damage) |
@@ -180,6 +180,8 @@ Enchantment Descriptions mod, so descriptions added for that mod also show up he
 ```
 ./gradlew build
 ```
+
+`./gradlew runGameTestServer` runs the game tests in `src/gametest` (they are not part of the mod jar).
 
 Needs JDK 25. The jar ends up in `build/libs` (this repository builds into `~/.gradle-builds/EnchantingPlus`).
 

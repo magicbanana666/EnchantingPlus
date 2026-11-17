@@ -49,6 +49,7 @@ import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
@@ -154,7 +155,7 @@ public final class FlimFlamEffects {
         return true;
     }
 
-    /** Puts Bane of Arthropods V on a non-enchantable single item, like a bucket or a saddle. */
+    /** Puts Bane of Arthropods V on a non-enchantable item that does not stack, like a water bucket or a saddle. */
     private static boolean bane(ServerPlayer target) {
         final Holder<net.minecraft.world.item.enchantment.Enchantment> bane = target.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.BANE_OF_ARTHROPODS);
         for (final ItemStack stack : target.getInventory().getNonEquipmentItems()) {
@@ -279,7 +280,7 @@ public final class FlimFlamEffects {
 
     private static final List<String> SQUID_NAMES = List.of("Fancy Hat", "Hello there!", "Look at my hat!", "My hat is amazing!", "Ceci n'est pas une pipe", "???");
 
-    /** A squid hat. */
+    /** A squid called "Fancy Hat" (or similar) appears at the victim's feet. (Entities can't ride players in 26.1.) */
     private static boolean squid(ServerPlayer target) {
         if (target.isVehicle()) {
             return false;
@@ -291,7 +292,6 @@ public final class FlimFlamEffects {
         squid.snapTo(target.getX(), target.getY(), target.getZ(), target.getYRot(), 0);
         squid.setCustomName(Component.literal(pick(SQUID_NAMES)));
         target.level().addFreshEntity(squid);
-        squid.startRiding(target, true, true);
         return true;
     }
 
@@ -415,10 +415,19 @@ public final class FlimFlamEffects {
                 }
             }
         }
+        // A torch at head height, on the floor if possible, else on one of the walls.
         final BlockPos torchPos = new BlockPos(playerX, playerY + 2, playerZ);
-        final BlockState torch = Blocks.TORCH.defaultBlockState();
-        if (level.isEmptyBlock(torchPos) && torch.canSurvive(level, torchPos)) {
-            level.setBlockAndUpdate(torchPos, torch);
+        if (level.isEmptyBlock(torchPos)) {
+            BlockState torch = Blocks.TORCH.defaultBlockState();
+            for (final Direction facing : Direction.Plane.HORIZONTAL) {
+                if (torch.canSurvive(level, torchPos)) {
+                    break;
+                }
+                torch = Blocks.WALL_TORCH.defaultBlockState().setValue(WallTorchBlock.FACING, facing);
+            }
+            if (torch.canSurvive(level, torchPos)) {
+                level.setBlockAndUpdate(torchPos, torch);
+            }
         }
         return true;
     }

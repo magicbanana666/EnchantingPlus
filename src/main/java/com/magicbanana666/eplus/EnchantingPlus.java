@@ -1,6 +1,7 @@
 package com.magicbanana666.eplus;
 
 import com.mojang.logging.LogUtils;
+import com.magicbanana666.eplus.enchantment.LuckyMining;
 import com.magicbanana666.eplus.network.EnchantPayload;
 import com.magicbanana666.eplus.network.SliderUpdatePayload;
 import net.minecraft.resources.Identifier;
@@ -25,6 +26,7 @@ public final class EnchantingPlus {
         EPlusRegistry.register(modBus);
         modBus.addListener(EnchantingPlus::registerPayloads);
         container.registerConfig(ModConfig.Type.SERVER, EPlusConfig.SPEC);
+        LuckyMining.register();
     }
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {

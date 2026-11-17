@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#minecraft:base_stone_overworld",
+    "#minecraft:base_stone_nether",
+    {
+      "id": "#c:stones",
+      "required": false
+    }
+  ]
+}

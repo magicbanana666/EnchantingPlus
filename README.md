@@ -4,7 +4,8 @@ Enchanting Plus gives you full control over enchanting. Instead of the random en
 **Advanced Enchantment Table** lets you pick exactly which enchantments go on an item, and at which level,
 and you pay for it with experience.
 
-Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies.
+Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies. It also adds the
+[Lucky Mining](#lucky-mining) enchantment.
 
 ## Download / install
 
@@ -70,6 +71,19 @@ Every player has their own item slot in the table, so you can leave an item in i
 players won't see it. Breaking the table drops the items of all players. The armor slots on the left side of
 the table are your normal armor slots.
 
+## Lucky Mining
+
+Enchanting Plus adds one enchantment of its own: **Lucky Mining** (I-III, pickaxes). When you mine an ore,
+there is a chance that a stone block next to it turns into the same ore, with green and gold particles and
+a chime. The base chance is 10% / 15% / 20%; mining the same ore again within 3 seconds raises it, up to
+twice the base chance.
+
+It is a normal (non-treasure) enchantment, so it is also available from the vanilla enchanting table,
+villagers and loot. Which blocks spread and which blocks they can replace are set by the block tags
+`eplus:lucky_mining/ores` and `eplus:lucky_mining/stones`.
+
+Lucky Mining is a port of [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC) by Buuz135 (MIT).
+
 ## Configuration
 
 The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in game through the mod list):
@@ -83,6 +97,9 @@ The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in g
 | `allowOtherEnchantments` | true | Show the "Other enchantments" category |
 | `blacklistedItems` | [] | Items that can't be enchanted, EG `"minecraft:elytra"` |
 | `blacklistedEnchantments` | [] | Enchantments that are never offered, EG `"minecraft:mending"` |
+| `luckyMining.tier1Chance` | 0.10 | Base chance of Lucky Mining I to spread an ore |
+| `luckyMining.tier2Chance` | 0.15 | Same, for Lucky Mining II |
+| `luckyMining.tier3Chance` | 0.20 | Same, for Lucky Mining III |
 
 Modpacks can also use the item tag `eplus:blacklisted` and the enchantment tag `eplus:blacklisted`.
 

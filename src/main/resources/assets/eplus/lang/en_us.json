@@ -63,6 +63,8 @@
   "enchantment.minecraft.breach.desc": "Smash attacks ignore part of the armor of the target.",
   "enchantment.minecraft.wind_burst.desc": "Smash attacks launch you up into the air again.",
   "enchantment.minecraft.lunge.desc": "Charge attacks dash you forward towards the target.",
+  "enchantment.eplus.lucky_mining": "Lucky Mining",
+  "enchantment.eplus.lucky_mining.desc": "Mining an ore has a chance to turn a stone block next to it into the same ore. Mining the same ore in a row raises the chance.",
   "eplus.configuration.title": "Enchanting Plus Configuration",
   "gui.eplus.other_enchantments": "- Other enchantments -"
 }

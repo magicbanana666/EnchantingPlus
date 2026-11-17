@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / 'src/main/resources/assets/eplus'
+ASSETS = ROOT / 'src/main/resources/assets/eplusplus'
 model = json.loads((ASSETS / 'models/block/advanced_table.json').read_text())
 textures = {k:np.array(Image.open(ASSETS / ('textures/'+v.split(':')[1]+'.png')).convert('RGB')) for k,v in model['textures'].items()}
 W,H = 960,840

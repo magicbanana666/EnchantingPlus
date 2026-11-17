@@ -5,6 +5,7 @@ import com.magicbanana666.eplus.block.entity.AdvancedTableBlockEntity;
 import com.magicbanana666.eplus.menu.AdvancedTableMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -35,8 +36,8 @@ public final class EPlusRegistry {
     public static final DeferredHolder<MenuType<?>, MenuType<AdvancedTableMenu>> ADVANCED_TABLE_MENU = MENUS.register("advanced_table",
             () -> IMenuTypeExtension.create(AdvancedTableMenu::new));
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("eplus", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.eplus"))
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("eplusplus", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.eplusplus"))
             .icon(() -> ADVANCED_TABLE_ITEM.get().getDefaultInstance())
             .displayItems((params, output) -> output.accept(ADVANCED_TABLE_ITEM.get()))
             .build());
@@ -45,6 +46,12 @@ public final class EPlusRegistry {
     }
 
     public static void register(IEventBus modBus) {
+        // Up to 6.2 the mod id was "eplus": keep the advanced tables of old worlds.
+        final Identifier oldTable = Identifier.fromNamespaceAndPath("eplus", "advanced_table");
+        BLOCKS.addAlias(oldTable, ADVANCED_TABLE.getId());
+        ITEMS.addAlias(oldTable, ADVANCED_TABLE_ITEM.getId());
+        BLOCK_ENTITIES.addAlias(oldTable, ADVANCED_TABLE_BE.getId());
+        MENUS.addAlias(oldTable, ADVANCED_TABLE_MENU.getId());
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         BLOCK_ENTITIES.register(modBus);

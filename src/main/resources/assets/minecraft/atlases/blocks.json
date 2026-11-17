@@ -2,7 +2,7 @@
   "sources": [
     {
       "type": "minecraft:single",
-      "resource": "eplus:entity/book/arcane"
+      "resource": "eplusplus:entity/book/arcane"
     }
   ]
 }

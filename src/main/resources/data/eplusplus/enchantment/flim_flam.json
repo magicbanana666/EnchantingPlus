@@ -1,7 +1,7 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.eplus.flim_flam"
+    "translate": "enchantment.eplusplus.flim_flam"
   },
   "max_cost": {
     "base": 51,
@@ -16,6 +16,6 @@
     "mainhand",
     "armor"
   ],
-  "supported_items": "#eplus:enchantable/flim_flam",
+  "supported_items": "#eplusplus:enchantable/flim_flam",
   "weight": 2
 }

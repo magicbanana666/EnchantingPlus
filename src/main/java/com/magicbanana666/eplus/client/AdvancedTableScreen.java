@@ -103,7 +103,7 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
             for (final Holder<Enchantment> enchantment : valid) {
                 // Enchantments that are not meant for the item come last, under their own title.
                 if (!otherHeader && !EnchLogic.isIntendedFor(this.logic.getInputStack(), enchantment)) {
-                    this.labels.add(new EnchantmentLabel(this, this.logic, Component.translatable("gui.eplus.other_enchantments")));
+                    this.labels.add(new EnchantmentLabel(this, this.logic, Component.translatable("gui.eplusplus.other_enchantments")));
                     otherHeader = true;
                 }
                 this.labels.add(new EnchantmentLabel(this, this.logic, enchantment));
@@ -153,7 +153,7 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
         super.extractRenderState(graphics, mouseX, mouseY, a);
         this.extractInfoBox(graphics);
         if (this.enchantButton.isMouseOver(mouseX, mouseY)) {
-            final String key = !this.logic.canAfford() ? "gui.eplus.tooltip.tooexpensive" : !this.logic.hasChanges() ? "gui.eplus.tooltip.nochange" : "gui.eplus.tooltip.enchant";
+            final String key = !this.logic.canAfford() ? "gui.eplusplus.tooltip.tooexpensive" : !this.logic.hasChanges() ? "gui.eplusplus.tooltip.nochange" : "gui.eplusplus.tooltip.enchant";
             graphics.setTooltipForNextFrame(Component.translatable(key), mouseX, mouseY);
         }
         else if (this.isSneakDown()) {
@@ -172,24 +172,24 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     private void extractInfoBox(GuiGraphicsExtractor graphics) {
         final List<Component> info = new ArrayList<>();
         if (this.logic.getInputStack().isEmpty()) {
-            info.add(Component.translatable("gui.eplus.info.noitem"));
+            info.add(Component.translatable("gui.eplusplus.info.noitem"));
         }
         else if (this.shownEnchantments.isEmpty()) {
-            info.add(Component.translatable("gui.eplus.info.noench"));
+            info.add(Component.translatable("gui.eplusplus.info.noench"));
         }
         else {
             final boolean infinite = this.minecraft.player.hasInfiniteMaterials();
-            info.add(infinite ? Component.translatable("eplus.info.infinity") : Component.translatable("eplus.info.playerxp", EnchLogic.getExperience(this.minecraft.player)));
-            info.add(Component.translatable("eplus.info.costxp", this.logic.getCost()));
-            info.add(Component.translatable("eplus.info.power", String.format(Locale.ROOT, "%.2f", this.logic.getEnchantmentPower())));
+            info.add(infinite ? Component.translatable("eplusplus.info.infinity") : Component.translatable("eplusplus.info.playerxp", EnchLogic.getExperience(this.minecraft.player)));
+            info.add(Component.translatable("eplusplus.info.costxp", this.logic.getCost()));
+            info.add(Component.translatable("eplusplus.info.power", String.format(Locale.ROOT, "%.2f", this.logic.getEnchantmentPower())));
             if (!this.logic.canAfford()) {
                 info.add(Component.empty());
-                info.add(Component.translatable("gui.eplus.info.tooexpensive").withStyle(ChatFormatting.RED));
+                info.add(Component.translatable("gui.eplusplus.info.tooexpensive").withStyle(ChatFormatting.RED));
             }
         }
         info.add(Component.empty());
-        info.add(Component.translatable("eplus.info.tip.prefix").withStyle(ChatFormatting.YELLOW)
-                .append(Component.translatable("eplus.info.tip." + this.tip, this.minecraft.options.keyShift.getTranslatedKeyMessage()).withStyle(ChatFormatting.WHITE)));
+        info.add(Component.translatable("eplusplus.info.tip.prefix").withStyle(ChatFormatting.YELLOW)
+                .append(Component.translatable("eplusplus.info.tip." + this.tip, this.minecraft.options.keyShift.getTranslatedKeyMessage()).withStyle(ChatFormatting.WHITE)));
 
         // Keep the box left of the table, also on small screens.
         final int maxWidth = Math.max(60, Math.min(INFO_WIDTH, this.leftPos - 12));

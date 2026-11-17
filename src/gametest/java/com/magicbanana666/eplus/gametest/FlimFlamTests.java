@@ -87,6 +87,7 @@ public final class FlimFlamTests {
         TESTS.put("luck_armor_beats_bare_attacker", FlimFlamTests::luckArmor);
         TESTS.put("luck_equal_does_nothing", FlimFlamTests::luckEqual);
         TESTS.put("command_flimflam", FlimFlamTests::command);
+        TESTS.put("old_eplus_ids_still_load", FlimFlamTests::oldIds);
     }
 
     private FlimFlamTests() {
@@ -442,6 +443,15 @@ public final class FlimFlamTests {
         commands.performPrefixedCommand(source, "flimflam " + p.getScoreboardName() + " effect");
         check(helper, p.getActiveEffects().size() == 2, "/flimflam <player> effect did not apply 2 effects");
         done(helper, p);
+    }
+
+    /** Worlds from 6.x (mod id "eplus") keep their advanced tables. */
+    private static void oldIds(GameTestHelper helper) {
+        final Identifier old = Identifier.fromNamespaceAndPath("eplus", "advanced_table");
+        check(helper, net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE.get(), "eplus:advanced_table block does not map to the table");
+        check(helper, net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE_ITEM.get(), "eplus:advanced_table item does not map to the table");
+        check(helper, net.minecraft.core.registries.BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(old) == com.magicbanana666.eplus.EPlusRegistry.ADVANCED_TABLE_BE.get(), "eplus:advanced_table block entity does not map to the table");
+        helper.succeed();
     }
 
     /** Removes whatever a random prank may have left around the player. */

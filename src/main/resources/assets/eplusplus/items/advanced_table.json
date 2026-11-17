@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "eplus:block/advanced_table"
+    "model": "eplusplus:block/advanced_table"
   }
 }

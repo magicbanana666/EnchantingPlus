@@ -127,7 +127,7 @@ public class EnchantmentLabel {
             return Component.translatable(key);
         }
         final String modName = ModList.get().getModContainerById(id.getNamespace()).map(c -> c.getModInfo().getDisplayName()).orElse(id.getNamespace());
-        return Component.translatable("tooltip.eplus.missing", modName, key);
+        return Component.translatable("tooltip.eplusplus.missing", modName, key);
     }
 
     public boolean isMouseOver(double mouseX, double mouseY) {

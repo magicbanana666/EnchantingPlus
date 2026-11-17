@@ -4,7 +4,8 @@ Enchanting Plus gives you full control over enchanting. Instead of the random en
 **Advanced Enchantment Table** lets you pick exactly which enchantments go on an item, and at which level,
 and you pay for it with experience.
 
-Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies.
+Enchanting Plus is for **Minecraft 26.1.2 on NeoForge** and has no dependencies. It also adds the
+[Lucky Mining](#lucky-mining) and [Flim Flam](#flim-flam) enchantments.
 
 ## Download / install
 
@@ -64,11 +65,82 @@ in between). Every bookshelf gives 1% discount, up to 30%.
 - **Curses** can only be added or removed around **midnight on a full moon**. Portal particles swirl around
   the table when that time has come.
 
+### Higher levels
+
+- On a **3x3 floor of beacon base blocks** (the same floor that unlocks treasures, but day or night), every
+  enchantment can go **2 levels past its normal max** (EG Sharpness VII, Mending III).
+- Make the floor out of **netherite blocks** and right click the table with an **Enchanted Golden Apple** to
+  empower it. The apple is used up. As long as the netherite floor stays, every enchantment can then go up to
+  **level 10** (or its normal max plus 2, if that is higher). The table stays empowered until it is broken.
+- Curses keep their normal max level.
+
+Both numbers can be changed in the config (`levels.floorBonusLevels`, `levels.empoweredMaxLevel`, up to 255).
+
+### Enchanting animation
+
+When you enchant an item, the table screen closes and the item rises over the book. Rune circles light up on
+the table, glyphs fly in from the bookshelves while the item spins up, and it ends in a burst of sparkles with
+a beam of light. Other players nearby see it too. You can turn it off, or keep the screen open, in
+`config/eplus-client.toml` (`enchantAnimation`, `closeScreenOnEnchant`).
+
+The animation is based on [Cinematic Interactions](https://modrinth.com/mod/cinematic-interactions) by Southware (MIT).
+
 ### Your own slot
 
 Every player has their own item slot in the table, so you can leave an item in it like in a chest and other
 players won't see it. Breaking the table drops the items of all players. The armor slots on the left side of
 the table are your normal armor slots.
+
+## Lucky Mining
+
+Enchanting Plus adds one enchantment of its own: **Lucky Mining** (I-III, pickaxes). When you mine an ore,
+there is a chance that a stone block next to it turns into the same ore, with green and gold particles and
+a chime. The base chance is 10% / 15% / 20%; mining the same ore again within 3 seconds raises it, up to
+twice the base chance.
+
+It is a normal (non-treasure) enchantment, so it is also available from the vanilla enchanting table,
+villagers and loot. Which blocks spread and which blocks they can replace are set by the block tags
+`eplus:lucky_mining/ores` and `eplus:lucky_mining/stones`.
+
+Lucky Mining is a port of [Lucky Mining](https://github.com/Buuz135/Lucky-Mining-MC) by Buuz135 (MIT).
+
+## Flim Flam
+
+**Flim Flam** (I-IV, armor and swords) is a PvP prank enchantment. When a player hurts another player, the one
+with less Flim Flam loses luck: the attacker counts the level on their weapon, the victim counts the total on
+their armor divided by three. Players with bad luck get pranked every now and then, and each prank brings
+their luck back up a bit. The worse the luck, the worse the pranks:
+
+| Prank | What happens |
+| --- | --- |
+| `sound` | A scary sound only the victim hears |
+| `sheep-dye` | A nearby sheep gets a random color |
+| `epic-lore` | A held or worn item gets a silly history in its tooltip |
+| `living-rename` | A nearby mob gets a silly name |
+| `invisible-mobs` | About a third of the nearby mobs turn invisible for 10 minutes |
+| `inventory-shuffle` | The inventory gets shuffled |
+| `squid` | A squid with a silly name (EG "Look at my hat!") appears at the victim's feet |
+| `useless-tool` | A completely broken tool or armor piece with a random enchantment drops |
+| `bane` | A water bucket, saddle or similar item gets Bane of Arthropods V |
+| `snowballs` | 200 snowballs shoot up (and come back down) |
+| `disarm` | Some armor and the held item are dropped |
+| `creepers` | 15 charged creepers fall from the sky (their explosions do no damage) |
+| `effect` | Two random, very strong potion effects (EG Speed 50, Levitation) |
+| `teleport` | An ender pearl is thrown in a random direction |
+| `mount` | The victim rides a random mob nearby |
+| `encase` | A dirt cage with a torch around the victim |
+| `skyblock` | Teleported 150 blocks up, onto a tiny ice platform |
+
+The first nine are "safe" (they don't kill). Server admins can allow only those with `flimFlam.safeOnly`, or
+turn off single pranks with `flimFlam.blacklist`.
+
+Commands (needs cheats / op):
+
+- `/flimflam <players> [<prank>]` - prank players right away (a random prank if none is given).
+- `/flimflam luck <player> [<amount>]` - show the luck of a player, or add to it (EG `-500` for very bad luck).
+
+Flim Flam is a port of the enchantment from [OpenBlocks](https://github.com/OpenMods/OpenBlocks) by the OpenMods
+Team (MIT). The custom OpenBlocks sounds (mosquito, alarm clock, ...) were replaced by vanilla sounds.
 
 ## Configuration
 
@@ -81,8 +153,15 @@ The settings are in `<world>/serverconfig/eplus-server.toml` (also editable in g
 | `treasureFactor` | 4.0 | Extra multiplier for treasure enchantments |
 | `curseFactor` | 3.0 | Extra multiplier for curses |
 | `allowOtherEnchantments` | true | Show the "Other enchantments" category |
+| `levels.floorBonusLevels` | 2 | Extra levels for every enchantment on a floor of beacon base blocks |
+| `levels.empoweredMaxLevel` | 10 | Max level for every enchantment at an empowered table on a netherite floor |
 | `blacklistedItems` | [] | Items that can't be enchanted, EG `"minecraft:elytra"` |
 | `blacklistedEnchantments` | [] | Enchantments that are never offered, EG `"minecraft:mending"` |
+| `luckyMining.tier1Chance` | 0.10 | Base chance of Lucky Mining I to spread an ore |
+| `luckyMining.tier2Chance` | 0.15 | Same, for Lucky Mining II |
+| `luckyMining.tier3Chance` | 0.20 | Same, for Lucky Mining III |
+| `flimFlam.safeOnly` | false | Only allow Flim Flam pranks that don't kill |
+| `flimFlam.blacklist` | [] | Flim Flam pranks that never happen, EG `"skyblock"` |
 
 Modpacks can also use the item tag `eplus:blacklisted` and the enchantment tag `eplus:blacklisted`.
 
@@ -101,6 +180,8 @@ Enchantment Descriptions mod, so descriptions added for that mod also show up he
 ```
 ./gradlew build
 ```
+
+`./gradlew runGameTestServer` runs the game tests in `src/gametest` (they are not part of the mod jar).
 
 Needs JDK 25. The jar ends up in `build/libs` (this repository builds into `~/.gradle-builds/EnchantingPlus`).
 

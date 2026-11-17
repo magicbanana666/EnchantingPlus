@@ -1,0 +1,104 @@
+newmtl stone
+Kd 1.0 1.0 1.0
+Ka 0.000000 0.000000 0.000000
+map_Kd #stone
+
+newmtl panel_lit
+Kd 1.0 1.0 1.0
+Ka 0.200000 0.200000 0.200000
+map_Kd #panel
+
+newmtl brass
+Kd 1.0 1.0 1.0
+Ka 0.000000 0.000000 0.000000
+map_Kd #brass
+
+newmtl pillar
+Kd 1.0 1.0 1.0
+Ka 0.000000 0.000000 0.000000
+map_Kd #pillar
+
+newmtl top
+Kd 1.0 1.0 1.0
+Ka 0.000000 0.000000 0.000000
+map_Kd #top
+
+newmtl crystal_lit_65
+Kd 0.65 0.65 0.65
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_84
+Kd 0.84 0.84 0.84
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_89
+Kd 0.89 0.89 0.89
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_69
+Kd 0.69 0.69 0.69
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_94
+Kd 0.94 0.94 0.94
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_97
+Kd 0.97 0.97 0.97
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_72
+Kd 0.72 0.72 0.72
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_96
+Kd 0.96 0.96 0.96
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_99
+Kd 0.99 0.99 0.99
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_90
+Kd 0.9 0.9 0.9
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_78
+Kd 0.78 0.78 0.78
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_68
+Kd 0.68 0.68 0.68
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_76
+Kd 0.76 0.76 0.76
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_66
+Kd 0.66 0.66 0.66
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_74
+Kd 0.74 0.74 0.74
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal
+
+newmtl crystal_lit_79
+Kd 0.79 0.79 0.79
+Ka 0.533333 0.533333 0.533333
+map_Kd #crystal

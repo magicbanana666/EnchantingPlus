@@ -48,6 +48,7 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     private boolean isSliding = false;
     private int sliderY = 1;
     private ItemButton enchantButton;
+    private boolean showingCurseIcon;
 
     public AdvancedTableScreen(AdvancedTableMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, 235, 182);
@@ -60,15 +61,8 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     protected void init() {
         super.init();
         this.isSliding = false;
-        final ItemStack icon;
-        if (EnchLogic.isWickedNight(this.logic.getLevel(), this.logic.getPos())) {
-            // A spooky bone on full moon nights.
-            icon = new ItemStack(Items.BONE);
-            icon.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
-        }
-        else {
-            icon = new ItemStack(Items.ENCHANTED_BOOK);
-        }
+        this.showingCurseIcon = EnchLogic.isWickedNight(this.logic.getLevel(), this.logic.getPos());
+        final ItemStack icon = enchantButtonIcon(this.showingCurseIcon);
         this.enchantButton = this.addRenderableWidget(new ItemButton(this.leftPos + 35, this.topPos + 38, icon, button -> this.onEnchant()));
         this.updateLabels();
     }
@@ -76,7 +70,20 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     @Override
     protected void containerTick() {
         super.containerTick();
+        final boolean cursesAvailable = EnchLogic.isWickedNight(this.logic.getLevel(), this.logic.getPos());
+        if (cursesAvailable != this.showingCurseIcon) {
+            this.showingCurseIcon = cursesAvailable;
+            this.enchantButton.icon = enchantButtonIcon(cursesAvailable);
+        }
         this.updateLabels();
+    }
+
+    private static ItemStack enchantButtonIcon(boolean cursesAvailable) {
+        final ItemStack icon = new ItemStack(cursesAvailable ? Items.BONE : Items.ENCHANTED_BOOK);
+        if (cursesAvailable) {
+            icon.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+        }
+        return icon;
     }
 
     private void onEnchant() {
@@ -279,7 +286,7 @@ public class AdvancedTableScreen extends AbstractContainerScreen<AdvancedTableMe
     /** A button showing an item instead of text. */
     private static class ItemButton extends Button.Plain {
 
-        private final ItemStack icon;
+        private ItemStack icon;
 
         ItemButton(int x, int y, ItemStack icon, OnPress onPress) {
             super(x, y, 20, 20, Component.empty(), onPress, DEFAULT_NARRATION);

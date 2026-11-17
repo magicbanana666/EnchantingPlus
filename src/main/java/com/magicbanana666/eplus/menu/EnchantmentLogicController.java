@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.magicbanana666.eplus.EnchLogic;
+import com.magicbanana666.eplus.network.EnchantFxPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.protocol.game.ClientboundSetExperiencePacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +20,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 /**
  * The enchanting state of one player at an advanced table. Exists on both sides: the client updates it
@@ -97,9 +101,14 @@ public class EnchantmentLogicController {
         return this.initialEnchantments.getOrDefault(enchant, 0);
     }
 
+    /** The highest level the enchantment can get at this table (see {@link EnchLogic#getMaxLevel}). */
+    public int getMaxLevel(Holder<Enchantment> enchantment) {
+        return EnchLogic.getMaxLevel(enchantment, this.level, this.pos);
+    }
+
     /** Whether the enchantment can't be changed right now (it conflicts with another one, or is above its max level). */
     public boolean isLocked(Holder<Enchantment> enchantment) {
-        if (this.getCurrentLevel(enchantment) > enchantment.value().getMaxLevel()) {
+        if (this.getCurrentLevel(enchantment) > this.getMaxLevel(enchantment)) {
             return true;
         }
         for (final Map.Entry<Holder<Enchantment>, Integer> other : this.itemEnchantments.entrySet()) {
@@ -116,7 +125,7 @@ public class EnchantmentLogicController {
             return false;
         }
         final int initial = this.getInitialLevel(enchantment);
-        level = Math.max(0, Math.min(level, Math.max(initial, enchantment.value().getMaxLevel())));
+        level = Math.max(0, Math.min(level, Math.max(initial, this.getMaxLevel(enchantment))));
         // Damaged items can't have enchantments taken off.
         if (level < initial && this.inputStack.isDamaged()) {
             level = initial;
@@ -194,6 +203,10 @@ public class EnchantmentLogicController {
         EnchantmentHelper.setEnchantments(stack, result);
         this.inventory.setItem(0, stack);
         this.onItemUpdated();
+        // Everyone around sees the enchanting animation.
+        if (this.level instanceof ServerLevel serverLevel) {
+            PacketDistributor.sendToPlayersTrackingChunk(serverLevel, ChunkPos.containing(this.pos), new EnchantFxPayload(this.pos, stack.copy(), this.player.getId()));
+        }
     }
 
     public int getCost() {

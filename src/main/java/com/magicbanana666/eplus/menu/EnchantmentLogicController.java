@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.magicbanana666.eplus.EnchLogic;
+import com.magicbanana666.eplus.network.EnchantFxPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.protocol.game.ClientboundSetExperiencePacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +20,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 /**
  * The enchanting state of one player at an advanced table. Exists on both sides: the client updates it
@@ -194,6 +198,10 @@ public class EnchantmentLogicController {
         EnchantmentHelper.setEnchantments(stack, result);
         this.inventory.setItem(0, stack);
         this.onItemUpdated();
+        // Everyone around sees the enchanting animation.
+        if (this.level instanceof ServerLevel serverLevel) {
+            PacketDistributor.sendToPlayersTrackingChunk(serverLevel, ChunkPos.containing(this.pos), new EnchantFxPayload(this.pos, stack.copy(), this.player.getId()));
+        }
     }
 
     public int getCost() {

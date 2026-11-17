@@ -2,6 +2,7 @@ package com.magicbanana666.eplus;
 
 import com.mojang.logging.LogUtils;
 import com.magicbanana666.eplus.enchantment.LuckyMining;
+import com.magicbanana666.eplus.network.EnchantFxPayload;
 import com.magicbanana666.eplus.network.EnchantPayload;
 import com.magicbanana666.eplus.network.SliderUpdatePayload;
 import net.minecraft.resources.Identifier;
@@ -33,6 +34,8 @@ public final class EnchantingPlus {
         final PayloadRegistrar registrar = event.registrar("1");
         registrar.playToServer(SliderUpdatePayload.TYPE, SliderUpdatePayload.STREAM_CODEC, SliderUpdatePayload::handle);
         registrar.playToServer(EnchantPayload.TYPE, EnchantPayload.STREAM_CODEC, EnchantPayload::handle);
+        // Handled on the client only, see EPlusClient
+        registrar.playToClient(EnchantFxPayload.TYPE, EnchantFxPayload.STREAM_CODEC);
     }
 
     public static Identifier id(String path) {

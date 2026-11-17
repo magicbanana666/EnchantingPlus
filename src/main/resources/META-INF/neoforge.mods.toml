@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[1,)"
-license="Don't Be an Asshole License (textures and translations: LGPL-2.1; Lucky Mining: MIT; see the licenses folder in the source)"
+license="Don't Be an Asshole License (textures and translations: LGPL-2.1; Lucky Mining and enchanting animation: MIT; see the licenses folder in the source)"
 
 [[mods]]
 modId="${mod_id}"
 displayName="${mod_display_name}"
 version="${mod_version}"
 authors="magicbanana666"
-credits="Based on Enchanting Plus by Darkhax and contributors (textures and translations). Lucky Mining enchantment ported from Lucky Mining by Buuz135 (MIT)."
+credits="Based on Enchanting Plus by Darkhax and contributors (textures and translations). Lucky Mining enchantment ported from Lucky Mining by Buuz135 (MIT). Enchanting animation based on Cinematic Interactions by Southware (MIT)."
 description='''Gives players control over enchanting: pick exactly which enchantments (and levels) go on an item in the Advanced Enchantment Table, paying with experience.'''
 
 [[dependencies.${mod_id}]]

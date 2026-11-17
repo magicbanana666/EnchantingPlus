@@ -65,6 +65,15 @@ in between). Every bookshelf gives 1% discount, up to 30%.
 - **Curses** can only be added or removed around **midnight on a full moon**. Portal particles swirl around
   the table when that time has come.
 
+### Enchanting animation
+
+When you enchant an item, the table screen closes and the item rises over the book. Rune circles light up on
+the table, glyphs fly in from the bookshelves while the item spins up, and it ends in a burst of sparkles with
+a beam of light. Other players nearby see it too. You can turn it off, or keep the screen open, in
+`config/eplus-client.toml` (`enchantAnimation`, `closeScreenOnEnchant`).
+
+The animation is based on [Cinematic Interactions](https://modrinth.com/mod/cinematic-interactions) by Southware (MIT).
+
 ### Your own slot
 
 Every player has their own item slot in the table, so you can leave an item in it like in a chest and other

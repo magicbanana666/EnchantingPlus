@@ -65,6 +65,13 @@
   "enchantment.minecraft.lunge.desc": "Charge attacks dash you forward towards the target.",
   "enchantment.eplus.lucky_mining": "Lucky Mining",
   "enchantment.eplus.lucky_mining.desc": "Mining an ore has a chance to turn a stone block next to it into the same ore. Mining the same ore in a row raises the chance.",
+  "enchantment.eplus.flim_flam": "Flim Flam",
+  "enchantment.eplus.flim_flam.desc": "Players you hit (with a Flim Flam weapon), or who hit you (through Flim Flam armor), lose luck if their Flim Flam is lower. Players with bad luck get pranked.",
+  "eplus.flimflam.flimflammed": "Something weird happens around you",
+  "commands.eplus.flimflam.success": "%s has been flim-flammed with %s",
+  "commands.eplus.flimflam.unknown": "Unknown prank",
+  "commands.eplus.flimflam.failed": "Flim-flamming failed!",
+  "commands.eplus.flimflam.luck": "Luck of %s: %s",
   "eplus.configuration.title": "Enchanting Plus Configuration",
   "gui.eplus.other_enchantments": "- Other enchantments -"
 }

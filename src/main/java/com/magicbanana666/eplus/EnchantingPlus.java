@@ -2,6 +2,7 @@ package com.magicbanana666.eplus;
 
 import com.mojang.logging.LogUtils;
 import com.magicbanana666.eplus.enchantment.LuckyMining;
+import com.magicbanana666.eplus.enchantment.flimflam.FlimFlam;
 import com.magicbanana666.eplus.network.EnchantFxPayload;
 import com.magicbanana666.eplus.network.EnchantPayload;
 import com.magicbanana666.eplus.network.SliderUpdatePayload;
@@ -28,6 +29,7 @@ public final class EnchantingPlus {
         modBus.addListener(EnchantingPlus::registerPayloads);
         container.registerConfig(ModConfig.Type.SERVER, EPlusConfig.SPEC);
         LuckyMining.register();
+        FlimFlam.register(modBus);
     }
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {
